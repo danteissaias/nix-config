@@ -12,6 +12,7 @@
     ];
     finder.AppleShowAllFiles = true;
     NSGlobalDomain.AppleInterfaceStyle = "Dark";
-    NSGlobalDomain.KeyRepeat = 2;
+    NSGlobalDomain.InitialKeyRepeat = 10;
+    NSGlobalDomain.KeyRepeat = 1;
   };
 }
