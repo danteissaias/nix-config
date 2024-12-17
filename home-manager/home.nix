@@ -37,6 +37,11 @@
     EDITOR = "nvim";
   };
 
+  # Don't show the "Last login" message for every new terminal.
+  home.file.".hushlogin" = {
+    text = "";
+  };
+
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
