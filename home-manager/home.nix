@@ -35,6 +35,14 @@
 
   home.sessionVariables = {
     EDITOR = "nvim";
+
+    # XDG base directories
+    XDG_CONFIG_HOME = "$HOME/.config";
+    XDG_DATA_HOME = "$HOME/.local/share";
+    XDG_CACHE_HOME = "$HOME/.cache";
+    XDG_RUNTIME_DIR = "$TMPDIR";
+
+    CARGO_HOME = "$HOME/.local/share/cargo";
   };
 
   # Don't show the "Last login" message for every new terminal.
