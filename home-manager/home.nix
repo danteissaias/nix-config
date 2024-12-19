@@ -79,7 +79,7 @@
   programs.kitty = {
     enable = true;
     themeFile = "Catppuccin-Mocha";
-    shellIntegration.mode = "no-cursor";
+    shellIntegration.mode = "no-sudo";
     shellIntegration.enableFishIntegration = true;
     settings = {
       font_family = "JetBrains Mono NL";

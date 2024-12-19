@@ -40,4 +40,6 @@
     config.allowUnfree = true;
     overlays = [ inputs.fenix.overlays.default ];
   };
+
+  security.pam.enableSudoTouchIdAuth = true;
 }
