@@ -73,11 +73,14 @@
       gp = "git push";
       gs = "git status";
       gt = "git tag";
+      cat = "bat";
     };
   };
 
   catppuccin.flavor = "mocha";
   catppuccin.enable = true;
+
+  programs.bat.enable = true;
   programs.kitty = {
     enable = true;
     shellIntegration.mode = "no-sudo";
