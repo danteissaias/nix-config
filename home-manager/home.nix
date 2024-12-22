@@ -14,6 +14,8 @@
       nixfmt-rfc-style
       ripgrep
 
+      gotools
+
       # GUI
       arc-browser
       kitty
@@ -21,6 +23,7 @@
       spotify
 
       # Languages
+      go
       bun
       nodejs_22
       (fenix.complete.withComponents [
