@@ -16,6 +16,8 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    catppuccin.url = "github:catppuccin/nix";
   };
 
   outputs =
@@ -25,6 +27,7 @@
       nix-darwin,
       home-manager,
       fenix,
+      catppuccin,
       ...
     }:
     {
@@ -38,7 +41,12 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.dante = import ./home-manager/home.nix;
+            home-manager.users.dante = {
+              imports = [
+                ./home-manager/home.nix
+                catppuccin.homeManagerModules.catppuccin
+              ];
+            };
           }
         ];
       };

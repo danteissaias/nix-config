@@ -76,9 +76,10 @@
     };
   };
 
+  catppuccin.flavor = "mocha";
+  catppuccin.enable = true;
   programs.kitty = {
     enable = true;
-    themeFile = "Catppuccin-Mocha";
     shellIntegration.mode = "no-sudo";
     shellIntegration.enableFishIntegration = true;
     settings = {
