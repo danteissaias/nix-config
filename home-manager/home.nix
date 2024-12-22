@@ -82,6 +82,16 @@
 
   programs.bat.enable = true;
   programs.fzf.enable = true;
+
+  programs.eza = {
+    enable = true;
+    enableFishIntegration = true;
+    extraOptions = [
+      "--group-directories-first"
+      "--header"
+    ];
+  };
+
   programs.kitty = {
     enable = true;
     shellIntegration.mode = "no-sudo";
