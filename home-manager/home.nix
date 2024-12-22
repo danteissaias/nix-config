@@ -81,6 +81,7 @@
   catppuccin.enable = true;
 
   programs.bat.enable = true;
+  programs.fzf.enable = true;
   programs.kitty = {
     enable = true;
     shellIntegration.mode = "no-sudo";
