@@ -6,19 +6,15 @@
     with pkgs;
     [
       # Tools
-      direnv
       ffmpeg
-      git
       neovim
-      nix-direnv
-      nixfmt-rfc-style
       ripgrep
 
+      nixfmt-rfc-style
       gotools
 
       # GUI
       arc-browser
-      kitty
       slack
       spotify
 
