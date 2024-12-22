@@ -19,7 +19,10 @@
     use-xdg-base-directories = true;
   };
 
-  fonts.packages = [ pkgs.jetbrains-mono ];
+  fonts.packages = [
+    pkgs.jetbrains-mono
+    pkgs.cascadia-code
+  ];
 
   programs.fish.enable = true;
 
