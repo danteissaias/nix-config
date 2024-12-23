@@ -13,11 +13,6 @@
       nixfmt-rfc-style
       gotools
 
-      # GUI
-      arc-browser
-      slack
-      spotify
-
       # Languages
       go
       bun

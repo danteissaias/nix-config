@@ -45,4 +45,15 @@
   };
 
   security.pam.enableSudoTouchIdAuth = true;
+
+  homebrew = {
+    enable = true;
+    casks = [
+      "1password"
+      "spotify"
+      "arc"
+      "raycast"
+      "slack"
+    ];
+  };
 }
