@@ -8,7 +8,7 @@
 {
   imports = [ ./system.nix ];
 
-  environment.systemPackages = [ pkgs.fish ];
+  environment.shells = [ pkgs.fish ];
 
   services.nix-daemon.enable = true;
 
