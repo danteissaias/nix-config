@@ -14,6 +14,7 @@
     NSGlobalDomain.AppleInterfaceStyle = "Dark";
     NSGlobalDomain.InitialKeyRepeat = 15;
     NSGlobalDomain.KeyRepeat = 1;
+    NSGlobalDomain."com.apple.swipescrolldirection" = false;
   };
 
   system.activationScripts.postUserActivation.text = ''
