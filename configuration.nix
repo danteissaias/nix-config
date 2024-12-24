@@ -54,6 +54,7 @@
       "raycast"
       "slack"
       "docker"
+      "postgres-unofficial"
     ];
   };
 }
