@@ -55,6 +55,7 @@
       "slack"
       "docker"
       "postgres-unofficial"
+      "postico"
     ];
   };
 }
