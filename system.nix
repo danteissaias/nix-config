@@ -15,6 +15,7 @@
     NSGlobalDomain.InitialKeyRepeat = 15;
     NSGlobalDomain.KeyRepeat = 1;
     NSGlobalDomain."com.apple.swipescrolldirection" = false;
+    ".GlobalPreferences"."com.apple.mouse.scaling" = 1.5;
   };
 
   system.activationScripts.postUserActivation.text = ''
