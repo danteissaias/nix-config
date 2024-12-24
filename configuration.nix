@@ -21,7 +21,6 @@
 
   fonts.packages = [
     pkgs.jetbrains-mono
-    pkgs.cascadia-code
   ];
 
   programs.fish.enable = true;
