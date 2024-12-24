@@ -53,6 +53,7 @@
       "arc"
       "raycast"
       "slack"
+      "docker"
     ];
   };
 }
