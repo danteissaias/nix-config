@@ -44,18 +44,37 @@
     text = "";
   };
 
+  home.file.".config/ghostty/config" = {
+    text = ''
+      theme = catppuccin-mocha
+      font-thicken = true
+      #adjust-cell-height = 30%
+      adjust-cell-height = 2
+      #macos-titlebar-style = tabs
+
+      # Disable ligatures
+      font-feature = -calt
+      font-feature = -liga
+      font-feature = -dlig
+    '';
+  };
+
   programs.fish = {
     enable = true;
+    functions = {
+      fish_greeting = "";
+    };
     interactiveShellInit = ''
-      # Disable greeting
-      set fish_greeting
-
       fish_vi_key_bindings
 
       set fish_cursor_default     block      blink
       set fish_cursor_insert      line       blink
       set fish_cursor_replace_one underscore blink
       set fish_cursor_visual      block
+
+
+      # Won't be neeeded once this is released: https://github.com/fish-shell/fish-shell/pull/10685
+      set -g fish_vi_force_cursor 1
     '';
     shellAliases = {
       ga = "git add";
@@ -86,18 +105,18 @@
     ];
   };
 
-  programs.kitty = {
-    enable = true;
-    shellIntegration.mode = "no-sudo";
-    shellIntegration.enableFishIntegration = true;
-    settings = {
-      font_family = "JetBrains Mono NL";
-      font_size = 13;
-      adjust_line_height = "120%";
-      hide_window_decorations = "titlebar-only";
-      window_padding_width = 10;
-    };
-  };
+  # programs.kitty = {
+  #   enable = true;
+  #   shellIntegration.mode = "no-sudo";
+  #   shellIntegration.enableFishIntegration = true;
+  #   settings = {
+  #     font_family = "JetBrains Mono NL";
+  #     font_size = 13;
+  #     adjust_line_height = "120%";
+  #     hide_window_decorations = "titlebar-only";
+  #     window_padding_width = 10;
+  #   };
+  # };
 
   programs.home-manager.enable = true;
 

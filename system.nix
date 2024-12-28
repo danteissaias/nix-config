@@ -1,4 +1,3 @@
-{ pkgs, ... }:
 {
   system.defaults = {
     menuExtraClock.Show24Hour = true;
@@ -6,7 +5,7 @@
     dock.show-recents = false;
     dock.persistent-apps = [
       "/Applications/Arc.app"
-      "${pkgs.kitty}/Applications/Kitty.app"
+      "/Applications/Ghostty.app"
       "/System/Applications/Mail.app"
       "/Applications/Spotify.app"
     ];

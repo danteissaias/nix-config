@@ -57,6 +57,11 @@
       "docker"
       "postgres-unofficial"
       "postico"
+      "ghostty"
     ];
   };
+
+  # Hack: https://github.com/ghostty-org/ghostty/discussions/2832
+  environment.variables.XDG_DATA_DIRS = [ "$GHOSTTY_SHELL_INTEGRATION_XDG_DIR" ];
+  environment.systemPath = [ "/Applications/Ghostty.app/Contents/MacOS/" ];
 }
