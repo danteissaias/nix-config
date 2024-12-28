@@ -47,6 +47,7 @@
 
   homebrew = {
     enable = true;
+    onActivation.cleanup = "zap";
     casks = [
       "1password"
       "spotify"
