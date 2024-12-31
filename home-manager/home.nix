@@ -49,9 +49,8 @@
     text = ''
       theme = catppuccin-mocha
       font-thicken = true
-      #adjust-cell-height = 30%
       adjust-cell-height = 2
-      #macos-titlebar-style = tabs
+      mouse-hide-while-typing = true
 
       # Disable ligatures
       font-feature = -calt
