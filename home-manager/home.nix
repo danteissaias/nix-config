@@ -10,6 +10,7 @@
       neovim
       ripgrep
       nvd
+      fd
 
       # Languages
       bun
