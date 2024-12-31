@@ -9,15 +9,14 @@
       ffmpeg
       neovim
       ripgrep
-
-      nixfmt-rfc-style
-      gotools
       nvd
 
       # Languages
-      go
       bun
       nodejs_22
+      nixfmt-rfc-style
+
+      # Rust
       (fenix.complete.withComponents [
         "cargo"
         "clippy"
