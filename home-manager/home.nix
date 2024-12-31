@@ -105,19 +105,6 @@
     ];
   };
 
-  # programs.kitty = {
-  #   enable = true;
-  #   shellIntegration.mode = "no-sudo";
-  #   shellIntegration.enableFishIntegration = true;
-  #   settings = {
-  #     font_family = "JetBrains Mono NL";
-  #     font_size = 13;
-  #     adjust_line_height = "120%";
-  #     hide_window_decorations = "titlebar-only";
-  #     window_padding_width = 10;
-  #   };
-  # };
-
   programs.home-manager.enable = true;
 
   programs.direnv = {
