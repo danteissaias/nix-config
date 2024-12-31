@@ -12,6 +12,7 @@
 
       nixfmt-rfc-style
       gotools
+      nvd
 
       # Languages
       go
