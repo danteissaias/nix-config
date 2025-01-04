@@ -1,7 +1,7 @@
 {
-  self,
-  inputs,
   pkgs,
+  username,
+  inputs,
   ...
 }:
 
@@ -27,12 +27,12 @@
 
   system = {
     stateVersion = 5;
-    configurationRevision = self.rev or self.dirtyRev or null;
+    configurationRevision = inputs.self.rev or inputs.self.dirtyRev or null;
   };
 
-  users.users.dante = {
-    name = "dante";
-    home = "/Users/dante";
+  users.users.${username} = {
+    name = username;
+    home = "/Users/${username}";
     isHidden = false;
     shell = pkgs.fish;
   };

@@ -1,4 +1,8 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  inputs,
+  ...
+}:
 {
   home.stateVersion = "25.05";
 
@@ -7,24 +11,17 @@
     [
       # Tools
       ffmpeg
-      neovim
       ripgrep
-      nvd
       fd
+      nvd
+      tokei
+      inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
 
       # Languages
       bun
       nodejs_22
       nixfmt-rfc-style
-
-      # Rust
-      (fenix.complete.withComponents [
-        "cargo"
-        "clippy"
-        "rust-src"
-        "rustc"
-        "rustfmt"
-      ])
+      inputs.fenix.packages.${pkgs.system}.minimal.toolchain
     ]
   );
 

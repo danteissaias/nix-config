@@ -18,33 +18,34 @@
     };
 
     catppuccin.url = "github:catppuccin/nix";
+
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
   outputs =
-    inputs@{
-      self,
-      nixpkgs,
-      nix-darwin,
-      home-manager,
-      fenix,
-      catppuccin,
-      ...
-    }:
+    inputs:
+    let
+      system = "aarch64-darwin";
+      hostname = "speedy";
+      username = "dante";
+      specialArgs = {
+        inherit username hostname inputs;
+      };
+    in
     {
-      darwinConfigurations."speedy" = nix-darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
-        specialArgs = { inherit self; };
-        inputs = { inherit inputs fenix; };
+      darwinConfigurations."${hostname}" = inputs.nix-darwin.lib.darwinSystem {
+        inherit system specialArgs;
         modules = [
           ./configuration.nix
-          home-manager.darwinModules.home-manager
+          inputs.home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.dante = {
+            home-manager.extraSpecialArgs = specialArgs;
+            home-manager.users.${username} = {
               imports = [
                 ./home-manager/home.nix
-                catppuccin.homeManagerModules.catppuccin
+                inputs.catppuccin.homeManagerModules.catppuccin
               ];
             };
           }
