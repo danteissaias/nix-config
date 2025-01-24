@@ -19,10 +19,6 @@
     use-xdg-base-directories = true;
   };
 
-  fonts.packages = [
-    pkgs.jetbrains-mono
-  ];
-
   programs.fish.enable = true;
 
   system = {
