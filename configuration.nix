@@ -1,6 +1,7 @@
 {
   pkgs,
   username,
+  lib,
   inputs,
   ...
 }:
@@ -39,7 +40,16 @@
     overlays = [ inputs.fenix.overlays.default ];
   };
 
-  security.pam.enableSudoTouchIdAuth = true;
+  # security.pam.enableSudoTouchIdAuth = true;
+
+  environment.systemPackages = [ pkgs.pam-watchid ];
+
+  environment.etc."pam.d/sudo_local" = {
+    text = ''
+      auth       sufficient     ${lib.getLib pkgs.pam-watchid}/lib/pam_watchid.so
+      auth       sufficient     pam_tid.so
+    '';
+  };
 
   homebrew = {
     enable = true;
