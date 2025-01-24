@@ -63,7 +63,7 @@
       "docker"
       "postgres-unofficial"
       "postico"
-      "ghostty"
+      "ghostty@tip"
     ];
   };
 
