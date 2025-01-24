@@ -48,6 +48,9 @@
       font-thicken = true
       adjust-cell-height = 2
       mouse-hide-while-typing = true
+      text-blending = linear-corrected
+      font-family = Geist Mono
+      font-variation-bold = wght=500
 
       # Disable ligatures
       font-feature = -calt
@@ -55,6 +58,27 @@
       font-feature = -dlig
     '';
   };
+
+  # Waiting for: https://github.com/nix-community/home-manager/pull/6300
+  # programs.ghostty = {
+  #   enable = true;
+  #   package = null;
+  #   settings = {
+  #     font-thicken = true;
+  #     adjust-cell-height = 2;
+  #     mouse-hide-while-typing = true;
+  #     text-blending = "linear-corrected";
+  #     font-family = "Geist Mono";
+  #     font-variation-bold = "wght=500";
+  #
+  #     # Disable ligatures
+  #     font-feature = [
+  #       "-calt"
+  #       "-liga"
+  #       "-dlig"
+  #     ];
+  #   };
+  # };
 
   programs.fish = {
     enable = true;
@@ -119,6 +143,11 @@
     enable = true;
     userName = "Dante Issaias";
     userEmail = "dante@issaias.com";
+    ignores = [
+      ".direnv"
+      ".envrc"
+      "shell.nix"
+    ];
     extraConfig = {
       init.defaultBranch = "main";
       commit.gpgsign = true;
