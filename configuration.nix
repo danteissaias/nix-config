@@ -39,10 +39,8 @@
     config.allowUnfree = true;
   };
 
-  # security.pam.enableSudoTouchIdAuth = true;
-
+  # Allow authentication with Apple Watch with closed lid
   environment.systemPackages = [ pkgs.pam-watchid ];
-
   environment.etc."pam.d/sudo_local" = {
     text = ''
       auth       sufficient     ${lib.getLib pkgs.pam-watchid}/lib/pam_watchid.so
