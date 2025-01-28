@@ -65,8 +65,12 @@
       "postico"
       "ghostty@tip"
       "linear-linear"
+      "visual-studio-code"
     ];
   };
+
+  # https://github.com/yioneko/vtsls/pull/206/files
+  environment.variables.ELECTRON_RUN_AS_NODE = "1";
 
   # Hack: https://github.com/ghostty-org/ghostty/discussions/2832
   environment.variables.XDG_DATA_DIRS = [ "$GHOSTTY_SHELL_INTEGRATION_XDG_DIR" ];
