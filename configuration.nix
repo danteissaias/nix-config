@@ -64,6 +64,7 @@
       "postgres-unofficial"
       "postico"
       "ghostty@tip"
+      "linear-linear"
     ];
   };
 
