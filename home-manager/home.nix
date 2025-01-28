@@ -21,7 +21,6 @@
       bun
       nodejs_22
       nixfmt-rfc-style
-      inputs.fenix.packages.${pkgs.system}.minimal.toolchain
     ]
   );
 
