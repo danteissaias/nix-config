@@ -41,43 +41,25 @@
     text = "";
   };
 
-  home.file.".config/ghostty/config" = {
-    text = ''
-      theme = catppuccin-mocha
-      font-thicken = true
-      adjust-cell-height = 2
-      mouse-hide-while-typing = true
-      text-blending = linear-corrected
-      font-family = Geist Mono
-      font-variation-bold = wght=500
+  programs.ghostty = {
+    enable = true;
+    package = null;
+    settings = {
+      font-thicken = true;
+      adjust-cell-height = 2;
+      mouse-hide-while-typing = true;
+      alpha-blending = "linear-corrected";
+      font-family = "Geist Mono";
+      font-variation-bold = "wght=500";
 
       # Disable ligatures
-      font-feature = -calt
-      font-feature = -liga
-      font-feature = -dlig
-    '';
+      font-feature = [
+        "-calt"
+        "-liga"
+        "-dlig"
+      ];
+    };
   };
-
-  # Waiting for: https://github.com/nix-community/home-manager/pull/6300
-  # programs.ghostty = {
-  #   enable = true;
-  #   package = null;
-  #   settings = {
-  #     font-thicken = true;
-  #     adjust-cell-height = 2;
-  #     mouse-hide-while-typing = true;
-  #     text-blending = "linear-corrected";
-  #     font-family = "Geist Mono";
-  #     font-variation-bold = "wght=500";
-  #
-  #     # Disable ligatures
-  #     font-feature = [
-  #       "-calt"
-  #       "-liga"
-  #       "-dlig"
-  #     ];
-  #   };
-  # };
 
   programs.fish = {
     enable = true;
