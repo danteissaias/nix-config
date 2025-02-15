@@ -45,12 +45,12 @@
     enable = true;
     package = null;
     settings = {
+      font-size = 12;
       font-thicken = true;
       adjust-cell-height = 2;
       mouse-hide-while-typing = true;
       alpha-blending = "linear-corrected";
-      font-family = "Geist Mono";
-      font-variation-bold = "wght=500";
+      font-family = "Berkeley Mono";
 
       # Disable ligatures
       font-feature = [
