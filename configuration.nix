@@ -1,7 +1,6 @@
 {
   pkgs,
   username,
-  lib,
   inputs,
   ...
 }:
@@ -39,12 +38,8 @@
 
   # Allow authentication with Apple Watch with closed lid
   environment.systemPackages = [ pkgs.pam-watchid ];
-  environment.etc."pam.d/sudo_local" = {
-    text = ''
-      auth       sufficient     ${lib.getLib pkgs.pam-watchid}/lib/pam_watchid.so
-      auth       sufficient     pam_tid.so
-    '';
-  };
+  security.pam.services.sudo_local.touchIdAuth = true;
+  security.pam.services.sudo_local.watchIdAuth = true;
 
   homebrew = {
     enable = true;
