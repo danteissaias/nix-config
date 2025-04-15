@@ -17,7 +17,10 @@
       tokei
       inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
 
+      flyctl
+
       # Languages
+      pnpm
       bun
       nodejs_22
       nixfmt-rfc-style

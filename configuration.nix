@@ -48,6 +48,7 @@
       "1password"
       "spotify"
       "arc"
+      "firefox"
       "raycast"
       "slack"
       "docker"
