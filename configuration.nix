@@ -15,6 +15,10 @@
   nix.settings = {
     experimental-features = "nix-command flakes";
     use-xdg-base-directories = true;
+
+    # Recommended when using `direnv` etc.
+    keep-derivations = true;
+    keep-outputs = true;
   };
 
   programs.fish.enable = true;
