@@ -1,8 +1,17 @@
 {
   pkgs,
   inputs,
+  config,
   ...
 }:
+let
+  inherit (config.xdg)
+    cacheHome
+    configHome
+    dataHome
+    stateHome
+    ;
+in
 {
   home.stateVersion = "25.05";
 
@@ -16,6 +25,8 @@
       nvd
       tokei
       inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
+      curl
+      jq
 
       flyctl
 
@@ -27,22 +38,31 @@
     ]
   );
 
+  home.sessionVariables.EDITOR = "nvim";
+
+  xdg.enable = true;
+  home.preferXdgDirectories = true;
+
   home.sessionVariables = {
-    EDITOR = "nvim";
+    BUNDLE_USER_CONFIG = "${configHome}/bundle/config";
+    BUNDLE_USER_CACHE = "${cacheHome}/bundle";
+    BUNDLE_USER_PLUGIN = "${dataHome}/bundle/plugin";
 
-    # XDG base directories
-    XDG_CONFIG_HOME = "$HOME/.config";
-    XDG_DATA_HOME = "$HOME/.local/share";
-    XDG_CACHE_HOME = "$HOME/.cache";
-    XDG_RUNTIME_DIR = "$TMPDIR";
+    CARGO_HOME = "${dataHome}/cargo";
 
-    CARGO_HOME = "$HOME/.local/share/cargo";
+    LESSHISTFILE = "${stateHome}/lesshst";
+
+    NODE_REPL_HISTORY = "${stateHome}/node_repl_history";
+    NPM_CONFIG_USERCONFIG = "${configHome}/npm/npmrc";
+
+    DOCKER_CONFIG = "${configHome}/docker";
+    FLY_CONFIG_DIR = "${stateHome}/fly";
   };
+
+  xdg.configFile."npm/npmrc".text = "cache = ${cacheHome}/npm";
 
   # Don't show the "Last login" message for every new terminal.
-  home.file.".hushlogin" = {
-    text = "";
-  };
+  home.file.".hushlogin".text = "";
 
   programs.ghostty = {
     enable = true;
@@ -76,10 +96,6 @@
       set fish_cursor_insert      line       blink
       set fish_cursor_replace_one underscore blink
       set fish_cursor_visual      block
-
-
-      # Won't be neeeded once this is released: https://github.com/fish-shell/fish-shell/pull/10685
-      set -g fish_vi_force_cursor 1
     '';
     shellAliases = {
       ga = "git add";
