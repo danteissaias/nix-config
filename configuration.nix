@@ -2,6 +2,7 @@
   pkgs,
   username,
   inputs,
+  hostname,
   ...
 }:
 
@@ -48,6 +49,9 @@
   security.pam.services.sudo_local.touchIdAuth = true;
   security.pam.services.sudo_local.watchIdAuth = true;
 
+  networking.computerName = "Dante's MacBook Pro";
+  networking.hostName = "${hostname}";
+  networking.knownNetworkServices = [ "Wi-Fi" ];
   networking.dns = [
     "1.1.1.1" # Cloudflare
     "8.8.8.8" # Google
