@@ -53,7 +53,12 @@ in
     FLY_CONFIG_DIR = "${stateHome}/fly";
   };
 
-  xdg.configFile."npm/npmrc".text = "cache = ${cacheHome}/npm";
+  xdg.configFile."npm/npmrc".text = ''
+    prefix=${dataHome}/npm
+    cache=${cacheHome}/npm
+    init-module=${configHome}/npm/config/npm-init.js
+    logs-dir=${stateHome}/npm/logs
+  '';
 
   # Don't show the "Last login" message for every new terminal.
   home.file.".hushlogin".text = "";
