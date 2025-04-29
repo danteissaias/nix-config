@@ -18,17 +18,16 @@ in
   home.packages = (
     with pkgs;
     [
-      # Tools
       ffmpeg
       ripgrep
       fd
       nvd
       tokei
-      inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
       curl
       jq
       nixfmt-rfc-style
       nodejs_22
+      inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
     ]
   );
 
