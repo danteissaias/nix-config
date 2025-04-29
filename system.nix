@@ -1,4 +1,23 @@
 {
+  pkgs,
+  hostname,
+  ...
+}:
+
+{
+  # Allow authentication with Apple Watch with closed lid
+  environment.systemPackages = [ pkgs.pam-watchid ];
+  security.pam.services.sudo_local.touchIdAuth = true;
+  security.pam.services.sudo_local.watchIdAuth = true;
+
+  networking.computerName = "Dante's MacBook Pro";
+  networking.hostName = "${hostname}";
+  networking.knownNetworkServices = [ "Wi-Fi" ];
+  networking.dns = [
+    "1.1.1.1" # Cloudflare
+    "8.8.8.8" # Google
+  ];
+
   system.defaults = {
     menuExtraClock.Show24Hour = true;
     dock.autohide = true;

@@ -42,25 +42,9 @@
       darwinConfigurations."${hostname}" = inputs.nix-darwin.lib.darwinSystem {
         inherit system specialArgs;
         modules = [
-          ./configuration.nix
           inputs.nix-homebrew.darwinModules.nix-homebrew
-          {
-            nix-homebrew = {
-              enable = true;
-
-              enableRosetta = false;
-
-              user = "${username}";
-
-              taps = {
-                "homebrew/homebrew-core" = inputs.homebrew-core;
-                "homebrew/homebrew-cask" = inputs.homebrew-cask;
-              };
-
-              mutableTaps = false;
-            };
-          }
           inputs.home-manager.darwinModules.home-manager
+          ./configuration.nix
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;

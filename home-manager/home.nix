@@ -27,14 +27,8 @@ in
       inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
       curl
       jq
-
-      flyctl
-
-      # Languages
-      pnpm
-      bun
-      nodejs_22
       nixfmt-rfc-style
+      nodejs_22
     ]
   );
 
@@ -145,11 +139,6 @@ in
     enable = true;
     userName = "Dante Issaias";
     userEmail = "dante@issaias.com";
-    ignores = [
-      ".direnv"
-      ".envrc"
-      "shell.nix"
-    ];
     delta = {
       enable = true;
     };
