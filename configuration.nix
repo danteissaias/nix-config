@@ -74,6 +74,7 @@
       "postico"
       "ghostty"
       "linear-linear"
+      "visual-studio-code" # Required for run-electon-as-node
     ];
   };
 
