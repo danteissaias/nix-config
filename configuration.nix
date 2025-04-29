@@ -21,6 +21,9 @@
     keep-outputs = true;
   };
 
+  # Don't need channels since I use flakes
+  nix.channel.enable = false;
+
   programs.fish.enable = true;
 
   system = {
