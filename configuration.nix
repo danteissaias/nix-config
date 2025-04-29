@@ -3,6 +3,7 @@
   username,
   inputs,
   hostname,
+  config,
   ...
 }:
 
@@ -75,6 +76,7 @@
       "linear-linear"
       "visual-studio-code" # Required for run-electon-as-node
     ];
+    taps = builtins.attrNames config.nix-homebrew.taps;
   };
 
   # Hack: https://github.com/ghostty-org/ghostty/discussions/2832
