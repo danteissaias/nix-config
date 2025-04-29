@@ -9,8 +9,6 @@
 {
   imports = [ ./system.nix ];
 
-  environment.shells = [ pkgs.fish ];
-
   nix.optimise.automatic = true;
 
   nix.settings = {
@@ -25,6 +23,7 @@
   # Don't need channels since I use flakes
   nix.channel.enable = false;
 
+  environment.shells = [ pkgs.fish ];
   programs.fish.enable = true;
 
   system = {
