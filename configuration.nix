@@ -43,20 +43,21 @@
 
   homebrew = {
     enable = true;
-    onActivation.cleanup = "zap";
+    onActivation = {
+      autoUpdate = true;
+      cleanup = "zap";
+    };
     casks = [
       "1password"
       "spotify"
       "arc"
-      "firefox"
       "raycast"
       "slack"
       "docker"
       "postgres-unofficial"
       "postico"
-      "ghostty@tip"
+      "ghostty"
       "linear-linear"
-      "visual-studio-code"
     ];
   };
 
