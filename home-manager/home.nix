@@ -29,6 +29,16 @@ in
       nixfmt-rfc-style
       nodejs_22
       inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
+
+      # LSP
+      vtsls
+      vscode-langservers-extracted
+      lua-language-server
+      nil
+      stylua
+      selene
+      prettierd
+      tailwindcss-language-server
     ]
   );
 
