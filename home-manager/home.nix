@@ -52,6 +52,8 @@ in
     ];
   };
 
+  home.sessionVariables.MANPAGER = "nvim +Man!";
+
   # Prevent home manager from creating an init.lua, I'm not managing my neovim
   # config with nix yet.
   catppuccin.nvim.enable = false;
