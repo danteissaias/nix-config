@@ -26,11 +26,21 @@ in
       tokei
       curl
       jq
-      nixfmt-rfc-style
       nodejs_22
-      inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
+    ]
+  );
 
-      # LSP
+  xdg.enable = true;
+  home.preferXdgDirectories = true;
+
+  programs.neovim = {
+    enable = true;
+    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+    vimAlias = true;
+    viAlias = true;
+    defaultEditor = true;
+    extraPackages = with pkgs; [
+      nixfmt-rfc-style
       vtsls
       vscode-langservers-extracted
       lua-language-server
@@ -39,13 +49,12 @@ in
       selene
       prettierd
       tailwindcss-language-server
-    ]
-  );
+    ];
+  };
 
-  home.sessionVariables.EDITOR = "nvim";
-
-  xdg.enable = true;
-  home.preferXdgDirectories = true;
+  # Prevent home manager from creating an init.lua, I'm not managing my neovim
+  # config with nix yet.
+  catppuccin.nvim.enable = false;
 
   home.sessionVariables = {
     BUNDLE_USER_CONFIG = "${configHome}/bundle/config";
