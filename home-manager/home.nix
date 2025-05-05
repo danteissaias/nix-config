@@ -44,7 +44,7 @@ in
       vtsls
       vscode-langservers-extracted
       lua-language-server
-      nil
+      nixd
       stylua
       selene
       prettierd
