@@ -49,6 +49,7 @@ in
       selene
       prettierd
       tailwindcss-language-server
+      fswatch # https://github.com/neovim/neovim/pull/27347
     ];
   };
 
