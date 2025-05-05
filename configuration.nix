@@ -43,6 +43,15 @@
   nixpkgs = {
     hostPlatform = "aarch64-darwin";
     config.allowUnfree = true;
+    config.packageOverrides = pkgs: {
+      berkeley-mono = pkgs.callPackage ./pkgs/berkeley-mono.nix { };
+    };
+  };
+
+  fonts = {
+    packages = with pkgs; [
+      berkeley-mono
+    ];
   };
 
   # Hack: https://github.com/ghostty-org/ghostty/discussions/2832
