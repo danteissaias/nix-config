@@ -88,7 +88,7 @@ in
     enable = true;
     package = null;
     settings = {
-      font-size = 15;
+      font-size = 18;
       font-thicken = true;
       adjust-cell-height = 2;
       mouse-hide-while-typing = true;
