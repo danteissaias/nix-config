@@ -132,6 +132,9 @@ in
     }
   ];
 
+  # https://github.com/catppuccin/nix/issues/552
+  catppuccin.mako.enable = false;
+
   catppuccin.flavor = "mocha";
   catppuccin.enable = true;
 
