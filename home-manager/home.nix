@@ -34,13 +34,6 @@ in
   xdg.enable = true;
   home.preferXdgDirectories = true;
 
-  programs.nh = {
-    enable = true;
-    clean.enable = true;
-    clean.extraArgs = "--keep-since 4d --keep 3";
-    flake = "${configHome}/nix-darwin";
-  };
-
   programs.neovim = {
     enable = true;
     package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
