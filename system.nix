@@ -1,6 +1,7 @@
 {
   pkgs,
   hostname,
+  username,
   ...
 }:
 
@@ -17,6 +18,8 @@
     "1.1.1.1" # Cloudflare
     "8.8.8.8" # Google
   ];
+
+  system.primaryUser = "${username}";
 
   system.defaults = {
     menuExtraClock.Show24Hour = true;
@@ -36,8 +39,8 @@
     ".GlobalPreferences"."com.apple.mouse.scaling" = 1.5;
   };
 
-  system.activationScripts.postUserActivation.text = ''
-    # Following line should allow us to avoid a logout/login cycle
-    /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
-  '';
+  # system.activationScripts.postUserActivation.text = ''
+  #   # Following line should allow us to avoid a logout/login cycle
+  #   /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+  # '';
 }

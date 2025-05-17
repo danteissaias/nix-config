@@ -29,7 +29,7 @@
   programs.fish.enable = true;
 
   system = {
-    stateVersion = 5;
+    stateVersion = 6;
     configurationRevision = inputs.self.rev or inputs.self.dirtyRev or null;
   };
 
