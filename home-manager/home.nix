@@ -124,7 +124,7 @@ in
       gco = "git checkout";
       gcp = "git cherry-pick";
       gdiff = "git diff";
-      gl = "git prettylog";
+      gl = "git log";
       gp = "git push";
       glr = "git pull --rebase";
       gs = "git status";
