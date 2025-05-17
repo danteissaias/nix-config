@@ -125,6 +125,7 @@ in
       gdiff = "git diff";
       gl = "git prettylog";
       gp = "git push";
+      glr = "git pull --rebase";
       gs = "git status";
       gt = "git tag";
       cat = "bat";
