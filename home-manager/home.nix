@@ -27,6 +27,7 @@ in
       curl
       jq
       nodejs_22
+      bun
     ]
   );
 
