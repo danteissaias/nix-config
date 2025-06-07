@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs-master.url = "github:NixOS/nixpkgs/master";
 
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin";
@@ -34,6 +35,17 @@
       system = "aarch64-darwin";
       hostname = "speedy";
       username = "dante";
+
+      overlays = [
+        (final: prev: {
+          claude-code =
+            (import inputs.nixpkgs-master {
+              inherit system;
+              config = final.config; # Use the same config as current nixpkgs
+            }).claude-code;
+        })
+      ];
+
       specialArgs = {
         inherit username hostname inputs;
       };
@@ -46,6 +58,7 @@
           inputs.home-manager.darwinModules.home-manager
           ./configuration.nix
           {
+            nixpkgs.overlays = overlays;
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = specialArgs;

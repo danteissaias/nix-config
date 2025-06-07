@@ -28,6 +28,7 @@ in
       jq
       nodejs_22
       bun
+      claude-code # from nixpkgs master
     ]
   );
 
