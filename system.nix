@@ -26,7 +26,7 @@
     dock.autohide = true;
     dock.show-recents = false;
     dock.persistent-apps = [
-      "/Applications/Arc.app"
+      "/Applications/Dia.app"
       "/Applications/Ghostty.app"
       "/System/Applications/Mail.app"
       "/Applications/Spotify.app"
