@@ -31,6 +31,7 @@
       "1password"
       "spotify"
       "arc"
+      "thebrowsercompany-dia"
       "raycast"
       "slack"
       "docker"
