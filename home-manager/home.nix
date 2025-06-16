@@ -92,6 +92,7 @@ in
     settings = {
       font-size = 18;
       font-thicken = true;
+      font-thicken-strength = 50;
       adjust-cell-height = 2;
       mouse-hide-while-typing = true;
       alpha-blending = "linear-corrected";
