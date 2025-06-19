@@ -2,6 +2,7 @@
   pkgs,
   username,
   inputs,
+  system,
   ...
 }:
 
@@ -43,7 +44,7 @@
   };
 
   nixpkgs = {
-    hostPlatform = "aarch64-darwin";
+    hostPlatform = system;
     config.allowUnfree = true;
     config.packageOverrides = pkgs: {
       berkeley-mono = pkgs.callPackage ./pkgs/berkeley-mono.nix { };
