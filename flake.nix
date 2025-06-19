@@ -47,7 +47,12 @@
       ];
 
       specialArgs = {
-        inherit username hostname inputs;
+        inherit
+          username
+          hostname
+          inputs
+          system
+          ;
       };
     in
     {
