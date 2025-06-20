@@ -7,10 +7,6 @@
 }:
 
 {
-  imports = [
-    ./system.nix
-    ./homebrew.nix
-  ];
 
   nix.enable = true;
 
@@ -32,7 +28,6 @@
   programs.fish.enable = true;
 
   system = {
-    stateVersion = 6;
     configurationRevision = inputs.self.rev or inputs.self.dirtyRev or null;
   };
 
@@ -47,7 +42,7 @@
     hostPlatform = system;
     config.allowUnfree = true;
     config.packageOverrides = pkgs: {
-      berkeley-mono = pkgs.callPackage ./pkgs/berkeley-mono.nix { };
+      berkeley-mono = pkgs.callPackage ../pkgs/berkeley-mono.nix { };
     };
   };
 

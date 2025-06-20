@@ -52,7 +52,9 @@
       darwinModules = [
         inputs.nix-homebrew.darwinModules.nix-homebrew
         inputs.home-manager.darwinModules.home-manager
-        ./configuration.nix
+        ./modules/configuration.nix
+        ./modules/system.nix
+        ./modules/homebrew.nix
         {
           nixpkgs.overlays = overlays;
           home-manager = {
@@ -61,7 +63,7 @@
             extraSpecialArgs = specialArgs;
             users.${username} = {
               imports = [
-                ./home-manager/home.nix
+                ./modules/home.nix
                 inputs.catppuccin.homeModules.catppuccin
               ];
             };
