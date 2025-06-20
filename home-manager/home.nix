@@ -90,10 +90,10 @@ in
     enable = true;
     package = null;
     settings = {
-      font-size = 18;
+      font-size = 14;
       font-thicken = true;
       font-thicken-strength = 50;
-      adjust-cell-height = 2;
+      adjust-cell-height = 3;
       mouse-hide-while-typing = true;
       alpha-blending = "linear-corrected";
       font-family = "Berkeley Mono";
