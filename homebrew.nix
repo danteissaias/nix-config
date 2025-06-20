@@ -30,7 +30,6 @@
     casks = [
       "1password"
       "spotify"
-      "arc"
       "thebrowsercompany-dia"
       "raycast"
       "slack"
@@ -39,7 +38,6 @@
       "postico"
       "ghostty"
       "linear-linear"
-      "keycastr"
       "visual-studio-code" # Required for run-electon-as-node
     ];
     taps = builtins.attrNames config.nix-homebrew.taps;
