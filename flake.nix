@@ -33,7 +33,6 @@
     inputs:
     let
       system = "aarch64-darwin";
-      hostname = "speedy";
       username = "dante";
 
       overlays = [
@@ -47,34 +46,35 @@
       ];
 
       specialArgs = {
-        inherit
-          username
-          hostname
-          inputs
-          system
-          ;
+        inherit username inputs system;
       };
-    in
-    {
-      darwinConfigurations."${hostname}" = inputs.nix-darwin.lib.darwinSystem {
-        inherit system specialArgs;
-        modules = [
-          inputs.nix-homebrew.darwinModules.nix-homebrew
-          inputs.home-manager.darwinModules.home-manager
-          ./configuration.nix
-          {
-            nixpkgs.overlays = overlays;
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = specialArgs;
-            home-manager.users.${username} = {
+
+      darwinModules = [
+        inputs.nix-homebrew.darwinModules.nix-homebrew
+        inputs.home-manager.darwinModules.home-manager
+        ./configuration.nix
+        {
+          nixpkgs.overlays = overlays;
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            extraSpecialArgs = specialArgs;
+            users.${username} = {
               imports = [
                 ./home-manager/home.nix
                 inputs.catppuccin.homeModules.catppuccin
               ];
             };
-          }
-        ];
+          };
+        }
+      ];
+    in
+    {
+      darwinConfigurations."speedy" = inputs.nix-darwin.lib.darwinSystem {
+        inherit system specialArgs;
+        modules = [
+          ./hosts/speedy.nix
+        ] ++ darwinModules;
       };
     };
 }
