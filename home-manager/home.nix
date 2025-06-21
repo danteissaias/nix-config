@@ -14,6 +14,10 @@ let
     ;
 in
 {
+  imports = [
+    inputs.catppuccin.homeModules.catppuccin
+  ];
+
   home.stateVersion = "25.05";
 
   home.packages = (

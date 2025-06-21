@@ -39,44 +39,39 @@
         (final: prev: {
           claude-code =
             (import inputs.nixpkgs-master {
-              inherit system;
-              config = final.config; # Use the same config as current nixpkgs
+              inherit (final) config system; # Use the same config as current nixpkgs
             }).claude-code;
         })
       ];
 
-      specialArgs = {
-        inherit username inputs system;
-      };
+      mkDarwinSystem =
+        hostname:
+        inputs.nix-darwin.lib.darwinSystem {
+          inherit system;
+          specialArgs = { inherit inputs username system; };
+          modules = [
+            inputs.nix-homebrew.darwinModules.nix-homebrew
+            inputs.home-manager.darwinModules.home-manager
+            ./modules/configuration.nix
+            ./modules/system.nix
+            ./modules/homebrew.nix
+            ./hosts/${hostname}.nix
+            {
+              nixpkgs.overlays = overlays;
 
-      darwinModules = [
-        inputs.nix-homebrew.darwinModules.nix-homebrew
-        inputs.home-manager.darwinModules.home-manager
-        ./modules/configuration.nix
-        ./modules/system.nix
-        ./modules/homebrew.nix
-        {
-          nixpkgs.overlays = overlays;
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            extraSpecialArgs = specialArgs;
-            users.${username} = {
-              imports = [
-                ./modules/home.nix
-                inputs.catppuccin.homeModules.catppuccin
-              ];
-            };
-          };
-        }
-      ];
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                extraSpecialArgs = { inherit inputs username; };
+                users.${username} = import ./home-manager/home.nix;
+              };
+            }
+          ];
+        };
     in
     {
-      darwinConfigurations."speedy" = inputs.nix-darwin.lib.darwinSystem {
-        inherit system specialArgs;
-        modules = [
-          ./hosts/speedy.nix
-        ] ++ darwinModules;
+      darwinConfigurations = {
+        speedy = mkDarwinSystem "speedy";
       };
     };
 }
