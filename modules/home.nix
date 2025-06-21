@@ -22,7 +22,6 @@ in
       ffmpeg
       ripgrep
       fd
-      nvd
       tokei
       curl
       jq
