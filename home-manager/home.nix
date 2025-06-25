@@ -108,6 +108,11 @@ in
       alpha-blending = "linear-corrected";
       font-family = "Berkeley Mono";
 
+      keybind = [
+        # Shift+Enter newline in Claude Code
+        "keybind = shift+enter=text:\n"
+      ];
+
       # Disable ligatures
       font-feature = [
         "-calt"
