@@ -110,7 +110,7 @@ in
 
       keybind = [
         # Shift+Enter newline in Claude Code
-        "keybind = shift+enter=text:\n"
+        "shift+enter=text:\n"
       ];
 
       # Disable ligatures
