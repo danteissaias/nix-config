@@ -131,6 +131,7 @@ in
       set fish_cursor_visual      block
     '';
     shellAliases = {
+      nds = "nh darwin switch";
       ga = "git add";
       gc = "git commit";
       gco = "git checkout";
