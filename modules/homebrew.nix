@@ -39,6 +39,7 @@
       "ghostty"
       "linear-linear"
       "visual-studio-code" # Required for run-electon-as-node
+      "cleanshot"
     ];
     taps = builtins.attrNames config.nix-homebrew.taps;
   };
