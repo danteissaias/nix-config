@@ -27,6 +27,9 @@
       autoUpdate = true;
       cleanup = "zap";
     };
+    brews = [
+      "n"
+    ];
     casks = [
       "1password"
       "spotify"

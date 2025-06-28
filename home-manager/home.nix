@@ -29,7 +29,6 @@ in
       tokei
       curl
       jq
-      nodejs_22
       bun
       claude-code # from nixpkgs master
     ]
@@ -84,7 +83,13 @@ in
 
     DOCKER_CONFIG = "${configHome}/docker";
     FLY_CONFIG_DIR = "${stateHome}/fly";
+
+    N_PREFIX = "${dataHome}/n";
   };
+
+  home.sessionPath = [
+    "${dataHome}/n/bin"
+  ];
 
   xdg.configFile."npm/npmrc".text = ''
     prefix=${dataHome}/npm
