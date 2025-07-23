@@ -36,7 +36,6 @@
       "thebrowsercompany-dia"
       "raycast"
       "slack"
-      "docker"
       "postgres-unofficial"
       "postico"
       "ghostty"

@@ -30,7 +30,23 @@ in
       curl
       jq
       bun
+      pnpm
       claude-code # from nixpkgs master
+      terraform
+      awscli2
+      terraformer
+
+      # for npm/canvas
+      pkg-config
+      pixman
+      cairo
+      pango
+      libpng
+      libjpeg
+      giflib
+      librsvg
+
+      rustup
     ]
   );
 
