@@ -23,18 +23,23 @@ in
   home.packages = (
     with pkgs;
     [
+      # cli utils
       ffmpeg
       ripgrep
       fd
       tokei
       curl
       jq
+
       bun
       pnpm
+      rustup
       claude-code # from nixpkgs master
+
+      spotify-player
+
       terraform
       awscli2
-      terraformer
 
       # for npm/canvas
       pkg-config
@@ -45,8 +50,6 @@ in
       libjpeg
       giflib
       librsvg
-
-      rustup
     ]
   );
 
@@ -76,6 +79,7 @@ in
       prettierd
       tailwindcss-language-server
       fswatch # https://github.com/neovim/neovim/pull/27347
+      terraform-ls
     ];
   };
 
