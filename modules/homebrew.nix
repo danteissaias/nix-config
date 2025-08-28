@@ -36,7 +36,6 @@
       "thebrowsercompany-dia"
       "raycast"
       "slack"
-      "postgres-unofficial"
       "postico"
       "ghostty"
       "visual-studio-code" # Required for run-electon-as-node
