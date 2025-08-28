@@ -162,7 +162,6 @@ in
       set fish_cursor_visual      block
     '';
     shellAliases = {
-      nds = "nh darwin switch";
       ga = "git add";
       gc = "git commit";
       gco = "git checkout";
@@ -174,6 +173,14 @@ in
       gs = "git status";
       gt = "git tag";
       cat = "bat";
+    };
+    shellAbbrs = {
+      nds = "nh darwin switch";
+      apply = "pnpm run dev:terraform:apply";
+      run = "pnpm run dev";
+      gen = "pnpm run dev:terraform:generate-output";
+      cache = "./scripts/clear-cache.sh";
+      pb = "pbpaste | jq";
     };
   };
 
