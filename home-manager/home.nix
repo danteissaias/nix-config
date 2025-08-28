@@ -109,6 +109,7 @@ in
 
   home.sessionPath = [
     "${dataHome}/n/bin"
+    "${dataHome}/npm/bin"
   ];
 
   xdg.configFile."npm/npmrc".text = ''
