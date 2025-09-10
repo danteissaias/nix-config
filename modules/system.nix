@@ -11,10 +11,6 @@
   security.pam.services.sudo_local.watchIdAuth = true;
 
   networking.knownNetworkServices = [ "Wi-Fi" ];
-  networking.dns = [
-    "1.1.1.1" # Cloudflare
-    "8.8.8.8" # Google
-  ];
 
   system.primaryUser = "${username}";
 
