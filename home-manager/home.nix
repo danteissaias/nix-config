@@ -190,6 +190,7 @@ in
       gen = "pnpm run dev:terraform:generate-output";
       cache = "./scripts/clear-cache.sh";
       pb = "pbpaste | jq";
+      deploy = "DEV_PROFILE=danteissaias pnpm dev:lambda:deploy";
     };
   };
 
