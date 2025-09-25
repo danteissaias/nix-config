@@ -151,6 +151,15 @@ in
   programs.fish = {
     enable = true;
     functions = {
+      cdx = ''
+        # from: <https://x.com/iannuttall/status/1965090297630826931>
+        # Note: with auto confirmation. Use at your own risk. Thanks!
+        if set -q argv[1]; and test $argv[1] = update
+          npm install -g @openai/codex@latest
+        else
+          codex -m gpt-5-codex --yolo -c model_reasoning_effort=high -c model_reasoning_summary_format=experimental --search $argv
+        end
+      '';
       fish_greeting = "";
     };
     interactiveShellInit = ''
