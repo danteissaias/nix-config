@@ -35,15 +35,6 @@
       system = "aarch64-darwin";
       username = "dante";
 
-      overlays = [
-        (final: prev: {
-          claude-code =
-            (import inputs.nixpkgs-master {
-              inherit (final) config system; # Use the same config as current nixpkgs
-            }).claude-code;
-        })
-      ];
-
       mkDarwinSystem =
         hostname:
         inputs.nix-darwin.lib.darwinSystem {
@@ -57,8 +48,6 @@
             ./modules/homebrew.nix
             ./hosts/${hostname}.nix
             {
-              nixpkgs.overlays = overlays;
-
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;

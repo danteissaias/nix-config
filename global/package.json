@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@anthropic-ai/claude-code": "^2.0.8",
+    "@openai/codex": "^0.44.0",
+    "@typescript/native-preview": "^7.0.0-dev.20251005.1"
+  }
+}

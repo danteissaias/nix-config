@@ -34,12 +34,12 @@ in
       bun
       pnpm
       rustup
-      claude-code # from nixpkgs master
 
       spotify-player
 
       terraform
       awscli2
+      github-cli
 
       # for npm/canvas
       pkg-config
@@ -109,7 +109,7 @@ in
 
   home.sessionPath = [
     "${dataHome}/n/bin"
-    "${dataHome}/npm/bin"
+    "/etc/nix-darwin/global/node_modules/.bin"
   ];
 
   xdg.configFile."npm/npmrc".text = ''
