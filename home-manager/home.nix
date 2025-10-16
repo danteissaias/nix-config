@@ -36,21 +36,10 @@ in
       pnpm
       rustup
 
-      spotify-player
-
       terraform
       awscli2
+      flyctl
       github-cli
-
-      # for npm/canvas
-      pkg-config
-      pixman
-      cairo
-      pango
-      libpng
-      libjpeg
-      giflib
-      librsvg
     ]
   );
 
