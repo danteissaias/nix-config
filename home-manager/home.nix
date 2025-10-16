@@ -30,6 +30,7 @@ in
       tokei
       curl
       jq
+      jujutsu
 
       bun
       pnpm
@@ -260,4 +261,24 @@ in
       push.autoSetupRemote = true;
     };
   };
+
+  programs.jujutsu = {
+    enable = true;
+    settings = {
+      user = {
+        email = "dante@issaias.com";
+        name = "Dante Issaias";
+      };
+      signing = {
+        behavior = "own";
+        backend = "ssh";
+        key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB7muwsYWV2wwi9frDZlp2AwCMP0ohzoBBWjsxD1LW7/";
+        backends.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
+      };
+      ui.pager = "delta";
+      ui.diff-formatter = ":git";
+      templates.git_push_bookmark = "\"dante/*\" ++ change_id.short()";
+    };
+  };
+
 }
