@@ -181,12 +181,13 @@ in
       gp = "git push";
       glr = "git pull --rebase";
       gs = "git status";
-      gt = "git tag";
+      stash = "git stash";
+      pop = "git stash pop";
       cat = "bat";
+      sw = "nh darwin switch";
     };
     shellAbbrs = {
-      nds = "nh darwin switch";
-      apply = "pnpm run dev:terraform:apply";
+      apply = "pnpm run dev:apply";
       run = "pnpm run dev";
       gen = "pnpm run dev:terraform:generate-output";
       cache = "./scripts/clear-cache.sh";
