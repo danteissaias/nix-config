@@ -267,7 +267,7 @@ in
       };
       ui.pager = "delta";
       ui.diff-formatter = ":git";
-      templates.git_push_bookmark = "\"dante/*\" ++ change_id.short()";
+      templates.git_push_bookmark = "\"dante/\" ++ change_id.short()";
     };
   };
 
