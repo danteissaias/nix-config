@@ -37,9 +37,10 @@
       "raycast"
       "slack"
       "postico"
-      "ghostty"
-      "visual-studio-code" # Required for run-electon-as-node
+      "ghostty@tip"
       "cleanshot"
+      "orbstack"
+      "superhuman"
     ];
     taps = builtins.attrNames config.nix-homebrew.taps;
   };

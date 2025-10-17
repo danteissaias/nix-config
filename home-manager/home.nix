@@ -23,7 +23,6 @@ in
   home.packages = (
     with pkgs;
     [
-      # cli utils
       ffmpeg
       ripgrep
       fd
@@ -31,11 +30,9 @@ in
       curl
       jq
       jujutsu
-
       bun
       pnpm
       rustup
-
       terraform
       awscli2
       flyctl
@@ -79,6 +76,7 @@ in
   # config with nix yet.
   catppuccin.nvim.enable = false;
 
+  # Make various apps use XDG directories.
   home.sessionVariables = {
     BUNDLE_USER_CONFIG = "${configHome}/bundle/config";
     BUNDLE_USER_CACHE = "${cacheHome}/bundle";
@@ -97,17 +95,19 @@ in
     N_PREFIX = "${dataHome}/n";
   };
 
-  home.sessionPath = [
-    "${dataHome}/n/bin"
-    "/etc/nix-darwin/global/node_modules/.bin"
-  ];
-
   xdg.configFile."npm/npmrc".text = ''
     prefix=${dataHome}/npm
     cache=${cacheHome}/npm
     init-module=${configHome}/npm/config/npm-init.js
     logs-dir=${stateHome}/npm/logs
   '';
+
+  home.sessionPath = [
+    # Node.js managed by n
+    "${dataHome}/n/bin"
+    # Global npm packages in /etc/nix-darwin/global/
+    "/etc/nix-darwin/global/node_modules/.bin"
+  ];
 
   # Don't show the "Last login" message for every new terminal.
   home.file.".hushlogin".text = "";
@@ -161,26 +161,28 @@ in
       set fish_cursor_visual      block
     '';
     shellAliases = {
-      ga = "git add";
-      gc = "git commit";
-      gco = "git checkout";
-      gcp = "git cherry-pick";
-      gdiff = "git diff";
-      gl = "git log";
-      gp = "git push";
-      glr = "git pull --rebase";
-      gs = "git status";
-      stash = "git stash";
-      pop = "git stash pop";
+      # ga = "git add";
+      # gc = "git commit";
+      # gco = "git checkout";
+      # gcp = "git cherry-pick";
+      # gdiff = "git diff";
+      # gl = "git log";
+      # gp = "git push";
+      # glr = "git pull --rebase";
+      # gs = "git status";
+      # stash = "git stash";
+      # pop = "git stash pop";
+      git = "echo 'use jj instead'";
       cat = "bat";
       sw = "nh darwin switch";
     };
     shellAbbrs = {
+      pb = "pbpaste | jq";
+      # Granola
       apply = "pnpm run dev:apply";
       run = "pnpm run dev";
       gen = "pnpm run dev:terraform:generate-output";
       cache = "./scripts/clear-cache.sh";
-      pb = "pbpaste | jq";
       deploy = "DEV_PROFILE=danteissaias pnpm dev:lambda:deploy";
     };
   };
@@ -227,6 +229,7 @@ in
 
   programs.ssh = {
     enable = true;
+    # Use 1Password agent
     extraConfig = "IdentityAgent \"~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock\"";
   };
 
@@ -259,15 +262,41 @@ in
         email = "dante@issaias.com";
         name = "Dante Issaias";
       };
+
+      # Use 1Password SSH key for signing commits
       signing = {
         behavior = "own";
         backend = "ssh";
         key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB7muwsYWV2wwi9frDZlp2AwCMP0ohzoBBWjsxD1LW7/";
         backends.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
       };
-      ui.pager = "delta";
-      ui.diff-formatter = ":git";
-      templates.git_push_bookmark = "\"dante/\" ++ change_id.short()";
+
+      # Use delta as the default pager
+      ui = {
+        pager = "delta";
+        diff-formatter = ":git";
+      };
+
+      # Silence help message
+      ui.default-command = "log";
+
+      # Move the closest bookmark to the current commit.
+      # From: https://github.com/jj-vcs/jj/issues/2338#issuecomment-3089766373
+      aliases.tug = [
+        "bookmark"
+        "move"
+        "--from"
+        "heads(::@- & (bookmarks() ~ trunk()))"
+        "--to"
+        "@-"
+      ];
+
+      # Instead of signing all commits during creation when signing.behavior is set to own,
+      # the git.sign-on-push configuration can be used to sign commits only upon running jj
+      # git push. All mutable unsigned commits being pushed will be signed prior to pushing.
+      # This might be preferred if the signing backend requires user interaction or is slow,
+      # so that signing is performed in a single batch operation.
+      git.sign-on-push = true;
     };
   };
 
