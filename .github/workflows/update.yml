@@ -13,9 +13,9 @@ jobs:
           nix_path: nixpkgs=channel:nixos-unstable
       - name: Update flake.lock
         run: |
-          nix flake update
+          ./update.sh
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git add flake.lock
+          git add .
           git commit -m "chore: update flake.lock" || exit 0
           git push
