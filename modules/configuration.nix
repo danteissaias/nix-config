@@ -19,6 +19,11 @@
     # Recommended when using `direnv` etc.
     keep-derivations = true;
     keep-outputs = true;
+
+    substituters = [ "https://danteissaias.cachix.org" ];
+    trusted-public-keys = [
+      "danteissaias.cachix.org-1:SP7pA1fVIJ+s6CCED5FjQGp+AhiBxIFDm3b17nA9Aa8="
+    ];
   };
 
   # Don't need channels since I use flakes
