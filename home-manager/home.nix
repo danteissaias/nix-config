@@ -116,12 +116,12 @@ in
     enable = true;
     package = null;
     settings = {
-      font-size = 14;
-      font-thicken = true;
-      font-thicken-strength = 50;
-      adjust-cell-height = 3;
+      # font-size = 14;
+      # font-thicken = true;
+      # font-thicken-strength = 50;
+      # adjust-cell-height = 3;
+      # alpha-blending = "linear-corrected";
       mouse-hide-while-typing = true;
-      alpha-blending = "linear-corrected";
       font-family = "Berkeley Mono";
 
       keybind = [
