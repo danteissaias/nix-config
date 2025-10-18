@@ -48,6 +48,7 @@
     config.allowUnfree = true;
     config.packageOverrides = pkgs: {
       berkeley-mono = pkgs.callPackage ../pkgs/berkeley-mono.nix { };
+      global-npm = pkgs.callPackage ../pkgs/global-npm.nix { };
     };
   };
 

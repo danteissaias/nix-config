@@ -38,6 +38,7 @@ in
       flyctl
       github-cli
       cachix
+      global-npm
     ]
   );
 
@@ -106,8 +107,6 @@ in
   home.sessionPath = [
     # Node.js managed by n
     "${dataHome}/n/bin"
-    # Global npm packages in /etc/nix-darwin/global/
-    "/etc/nix-darwin/global/node_modules/.bin"
   ];
 
   # Don't show the "Last login" message for every new terminal.
