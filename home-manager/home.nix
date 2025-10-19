@@ -276,12 +276,11 @@ in
       ui.default-command = "log";
 
       # Move the closest bookmark to the current commit.
-      # From: https://github.com/jj-vcs/jj/issues/2338#issuecomment-3089766373
       aliases.tug = [
         "bookmark"
         "move"
         "--from"
-        "heads(::@- & (bookmarks() ~ trunk()))"
+        "heads(::@- & bookmarks())"
         "--to"
         "@-"
       ];
