@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   networking.computerName = "Dante's MacBook Pro (M4)";
   networking.hostName = "m4";
@@ -7,4 +8,8 @@
     enable = true;
     name = "m4";
   };
+
+  environment.systemPackages = with pkgs; [
+    cachix
+  ];
 }

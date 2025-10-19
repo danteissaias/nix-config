@@ -37,7 +37,6 @@ in
       awscli2
       flyctl
       github-cli
-      cachix
       global-npm
     ]
   );
