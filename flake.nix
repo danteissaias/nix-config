@@ -28,7 +28,6 @@
       flake = false;
     };
 
-    cachix-deploy.url = "github:cachix/cachix-deploy-flake";
   };
 
   outputs =
@@ -36,8 +35,6 @@
     let
       system = "aarch64-darwin";
       username = "dante";
-      pkgs = import inputs.nixpkgs { inherit system; };
-      cachix-deploy-lib = inputs.cachix-deploy.lib pkgs;
 
       mkDarwinSystem =
         hostname:
@@ -66,10 +63,6 @@
       darwinConfigurations = {
         speedy = mkDarwinSystem "speedy";
         m4 = mkDarwinSystem "m4";
-      };
-
-      packages.${system}.default = cachix-deploy-lib.spec {
-        agents.m4 = inputs.self.darwinConfigurations.m4.system;
       };
     };
 }

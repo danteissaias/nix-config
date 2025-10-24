@@ -38,6 +38,7 @@ in
       flyctl
       github-cli
       global-npm
+      mergiraf
     ]
   );
 
