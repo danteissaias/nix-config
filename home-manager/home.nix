@@ -244,25 +244,7 @@ in
 
   programs.btop.enable = true;
 
-  programs.git = {
-    enable = true;
-    userName = "Dante Issaias";
-    userEmail = "dante@issaias.com";
-    delta = {
-      enable = true;
-    };
-    signing = {
-      key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB7muwsYWV2wwi9frDZlp2AwCMP0ohzoBBWjsxD1LW7/";
-      format = "ssh";
-      signByDefault = true;
-      signer = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
-    };
-    extraConfig = {
-      init.defaultBranch = "main";
-      pull.rebase = true;
-      push.autoSetupRemote = true;
-    };
-  };
+  programs.difftastic.enable = true;
 
   programs.jujutsu = {
     enable = true;
@@ -282,8 +264,12 @@ in
 
       # Use delta as the default pager
       ui = {
-        pager = "delta";
-        diff-formatter = ":git";
+        diff-formatter = [
+          "difft"
+          "--color=always"
+          "$left"
+          "$right"
+        ];
       };
 
       # Silence help message
