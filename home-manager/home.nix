@@ -244,7 +244,10 @@ in
 
   programs.btop.enable = true;
 
-  programs.difftastic.enable = true;
+  # git.enable is required to get catppuccin to work with delta
+  programs.git.enable = true;
+  programs.delta.enable = true;
+  programs.delta.enableGitIntegration = true;
 
   programs.jujutsu = {
     enable = true;
@@ -264,12 +267,8 @@ in
 
       # Use delta as the default pager
       ui = {
-        diff-formatter = [
-          "difft"
-          "--color=always"
-          "$left"
-          "$right"
-        ];
+        pager = "delta";
+        diff-formatter = ":git";
       };
 
       # Silence help message
