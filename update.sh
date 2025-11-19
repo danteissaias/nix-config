@@ -4,7 +4,7 @@
 nix flake update
 
 # Update npm packages to latest versions
-(cd global && npm update)
+(cd global && npx npm-check-updates -u && npm install)
 
 # Fix package-lock.json and update npmDepsHash
 echo "Fixing package-lock.json..."
