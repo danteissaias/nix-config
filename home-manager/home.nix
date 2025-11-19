@@ -29,7 +29,6 @@ in
       tokei
       curl
       jq
-      jujutsu
       bun
       pnpm
       rustup
@@ -39,6 +38,7 @@ in
       github-cli
       global-npm
       mergiraf
+      graphite-cli
     ]
   );
 
@@ -144,7 +144,7 @@ in
       cdx = ''
         # from: <https://x.com/iannuttall/status/1965090297630826931>
         # Note: with auto confirmation. Use at your own risk. Thanks!
-        codex -m gpt-5-codex --yolo -c model_reasoning_effort=high -c model_reasoning_summary_format=experimental --search $argv
+        codex -m gpt-5-codex --yolo -c model_reasoning_effort=high -c model_reasoning_summary_format=experimental --enable web_search_request $argv
       '';
       fish_greeting = "";
     };
@@ -157,18 +157,10 @@ in
       set fish_cursor_visual      block
     '';
     shellAliases = {
-      # ga = "git add";
-      # gc = "git commit";
-      # gco = "git checkout";
-      # gcp = "git cherry-pick";
-      # gdiff = "git diff";
-      # gl = "git log";
-      # gp = "git push";
-      # glr = "git pull --rebase";
-      # gs = "git status";
-      # stash = "git stash";
-      # pop = "git stash pop";
-      git = "echo 'use jj instead'";
+      gco = "gt checkout";
+      gst = "git status";
+      stash = "git stash";
+      pop = "git stash pop";
       cat = "bat";
       sw = "nh darwin switch";
     };
@@ -245,51 +237,26 @@ in
   programs.btop.enable = true;
 
   # git.enable is required to get catppuccin to work with delta
-  programs.git.enable = true;
   programs.delta.enable = true;
   programs.delta.enableGitIntegration = true;
 
-  programs.jujutsu = {
+  programs.git = {
     enable = true;
+    signing = {
+      key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB7muwsYWV2wwi9frDZlp2AwCMP0ohzoBBWjsxD1LW7/";
+      format = "ssh";
+      signByDefault = true;
+      signer = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
+    };
     settings = {
       user = {
-        email = "dante@issaias.com";
         name = "Dante Issaias";
+        email = "dante@issaias.com";
       };
 
-      # Use 1Password SSH key for signing commits
-      signing = {
-        behavior = "own";
-        backend = "ssh";
-        key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB7muwsYWV2wwi9frDZlp2AwCMP0ohzoBBWjsxD1LW7/";
-        backends.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
-      };
-
-      # Use delta as the default pager
-      ui = {
-        pager = "delta";
-        diff-formatter = ":git";
-      };
-
-      # Silence help message
-      ui.default-command = "log";
-
-      # Move the closest bookmark to the current commit.
-      aliases.tug = [
-        "bookmark"
-        "move"
-        "--from"
-        "heads(::@- & bookmarks())"
-        "--to"
-        "@-"
-      ];
-
-      # Instead of signing all commits during creation when signing.behavior is set to own,
-      # the git.sign-on-push configuration can be used to sign commits only upon running jj
-      # git push. All mutable unsigned commits being pushed will be signed prior to pushing.
-      # This might be preferred if the signing backend requires user interaction or is slow,
-      # so that signing is performed in a single batch operation.
-      git.sign-on-push = true;
+      init.defaultBranch = "main";
+      pull.rebase = true;
+      push.autoSetupRemote = true;
     };
   };
 
