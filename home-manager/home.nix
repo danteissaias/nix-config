@@ -39,6 +39,7 @@ in
       global-npm
       mergiraf
       graphite-cli
+      go
     ]
   );
 
@@ -59,6 +60,7 @@ in
     viAlias = true;
     defaultEditor = true;
     extraPackages = with pkgs; [
+      gopls
       nixfmt-rfc-style
       vtsls
       vscode-langservers-extracted
