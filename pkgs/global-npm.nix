@@ -1,4 +1,4 @@
-{ lib, buildNpmPackage }:
+{ lib, buildNpmPackage, nodejs }:
 
 buildNpmPackage {
   pname = "global-npm-packages";
@@ -11,9 +11,19 @@ buildNpmPackage {
   dontNpmBuild = true;
   dontAutoPatchelf = true;
 
+  nativeBuildInputs = [ nodejs ];
+
   installPhase = ''
+    runHook preInstall
+
     mkdir -p $out/bin
     cp -r node_modules $out/
+
+    if [ -f $out/node_modules/opencode-ai/postinstall.mjs ]; then
+      pushd $out/node_modules/opencode-ai >/dev/null
+      NODE_PATH=$out/node_modules ${nodejs}/bin/node postinstall.mjs
+      popd >/dev/null
+    fi
 
     # Symlink all binaries from node_modules/.bin
     if [ -d node_modules/.bin ]; then
@@ -23,6 +33,8 @@ buildNpmPackage {
         fi
       done
     fi
+
+    runHook postInstall
   '';
 
   meta = {
