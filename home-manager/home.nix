@@ -165,6 +165,7 @@ in
       pop = "git stash pop";
       cat = "bat";
       sw = "nh darwin switch";
+      amp = "amp --try-opus";
     };
     shellAbbrs = {
       pb = "pbpaste | jq";
