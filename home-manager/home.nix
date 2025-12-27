@@ -40,6 +40,8 @@ in
       mergiraf
       graphite-cli
       go
+      python3
+      jj-starship
     ]
   );
 
@@ -187,6 +189,14 @@ in
       nix_shell.impure_msg = "";
       directory.fish_style_pwd_dir_length = 1; # turn on fish directory truncation
       directory.truncation_length = 2; # number of directories not to truncate
+      custom.jj = {
+        command = "jj-starship";
+        shell = [ "sh" ];
+        format = "$output ";
+        detect_folders = [ ".jj" ];
+      };
+      git_branch.disabled = true;
+      git_status.disabled = true;
     }
   ];
 
@@ -239,7 +249,6 @@ in
 
   programs.btop.enable = true;
 
-  # git.enable is required to get catppuccin to work with delta
   programs.delta.enable = true;
   programs.delta.enableGitIntegration = true;
 
@@ -260,6 +269,52 @@ in
       init.defaultBranch = "main";
       pull.rebase = true;
       push.autoSetupRemote = true;
+    };
+  };
+
+  programs.jujutsu = {
+    enable = true;
+
+    settings = {
+      user = {
+        email = "dante@issaias.com";
+        name = "Dante Issaias";
+
+      };
+
+      # Use 1Password SSH key for signing commits
+      signing = {
+        behavior = "own";
+        backend = "ssh";
+        key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB7muwsYWV2wwi9frDZlp2AwCMP0ohzoBBWjsxD1LW7/";
+        backends.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
+      };
+
+      # Use delta as the default pager
+      ui = {
+        pager = "delta";
+        diff-formatter = ":git";
+      };
+
+      # Silence help message
+      ui.default-command = "log";
+
+      # Move the closest bookmark to the current commit.
+      aliases.tug = [
+        "bookmark"
+        "move"
+        "--from"
+        "heads(::@- & bookmarks())"
+        "--to"
+        "@-"
+      ];
+
+      # Instead of signing all commits during creation when signing.behavior is set to own,
+      # the git.sign-on-push configuration can be used to sign commits only upon running jj
+      # git push. All mutable unsigned commits being pushed will be signed prior to pushing.
+      # This might be preferred if the signing backend requires user interaction or is slow,
+      # so that signing is performed in a single batch operation.
+      git.sign-on-push = true;
     };
   };
 
