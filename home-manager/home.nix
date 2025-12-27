@@ -202,13 +202,15 @@ in
       directory.fish_style_pwd_dir_length = 1; # turn on fish directory truncation
       directory.truncation_length = 2; # number of directories not to truncate
       custom.jj = {
-        command = "jj-starship";
+        command = "jj-starship --no-symbol";
         shell = [ "sh" ];
         format = "$output ";
         detect_folders = [ ".jj" ];
       };
       git_branch.disabled = true;
       git_status.disabled = true;
+      git_state.disabled = true;
+      git_commit.disabled = true;
     }
   ];
 
