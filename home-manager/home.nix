@@ -42,6 +42,7 @@ in
       go
       python311
       jj-starship
+      jj-ryu
     ]
   );
 
