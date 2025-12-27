@@ -40,7 +40,7 @@ in
       mergiraf
       graphite-cli
       go
-      python3
+      python311
       jj-starship
     ]
   );
