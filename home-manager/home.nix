@@ -112,6 +112,7 @@ in
   home.sessionPath = [
     # Node.js managed by n
     "${dataHome}/n/bin"
+    "${dataHome}/cargo/bin"
   ];
 
   # Don't show the "Last login" message for every new terminal.
@@ -152,6 +153,16 @@ in
         codex -m gpt-5-codex --yolo -c model_reasoning_effort=high -c model_reasoning_summary_format=experimental --enable web_search_request $argv
       '';
       fish_greeting = "";
+      repo = ''
+        set -l output (command repo $argv)
+        set -l exit_code $status
+        if test $exit_code -eq 0 -a -d "$output"
+            cd "$output"
+        else
+            echo "$output"
+            return $exit_code
+        end
+      '';
     };
     interactiveShellInit = ''
       fish_vi_key_bindings
