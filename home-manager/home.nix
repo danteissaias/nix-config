@@ -309,6 +309,23 @@ in
         "@-"
       ];
 
+      templates.git_push_bookmark = "\"dante/\" ++ committer.timestamp().format(\"%m-%d\") ++ \"_\" ++ description_slug(description)";
+
+      # Replace all non-word characters with -
+      # Replace multiple --- with a single -
+      # Remove a starting or ending -
+      template-aliases."description_slug(description)" = ''
+        truncate_end(
+          244,
+          description
+            .first_line()
+            .lower()
+            .replace(regex:"[[:^word:]]", "-")
+            .replace(regex:"-+", "-")
+            .replace(regex:"^-|-$", "")
+        ) 
+      '';
+
       # Instead of signing all commits during creation when signing.behavior is set to own,
       # the git.sign-on-push configuration can be used to sign commits only upon running jj
       # git push. All mutable unsigned commits being pushed will be signed prior to pushing.
