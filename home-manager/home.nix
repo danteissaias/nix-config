@@ -144,21 +144,46 @@ in
   programs.fish = {
     enable = true;
     functions = {
-      cdx = ''
+      fish_greeting = "";
+      cdx = /* fish */ ''
         # from: <https://x.com/iannuttall/status/1965090297630826931>
         # Note: with auto confirmation. Use at your own risk. Thanks!
         codex -m gpt-5-codex --yolo -c model_reasoning_effort=high -c model_reasoning_summary_format=experimental --enable web_search_request $argv
       '';
-      fish_greeting = "";
-      repo = ''
-        set -l output (command repo $argv)
-        set -l exit_code $status
-        if test $exit_code -eq 0 -a -d "$output"
-            cd "$output"
-        else
-            echo "$output"
-            return $exit_code
+      repo = /* fish */ ''
+        set -l BASE_URL "https://github.com/"
+        set -l CLONE_COMMAND "jj git clone"
+        set -l root "$HOME/Repos"
+        function __repo_slug
+            set -l r $argv[1]
+            if string match -q "*://*" $r
+                string split '/' $r | tail -n +4 | string join '/'
+            else if string match -q "*:*" $r
+                string split ':' $r | tail -n 1
+            else
+                echo $r
+            end
         end
+        set -l target
+        if test (count $argv) -gt 0
+            set -l slug (__repo_slug $argv[1] | string replace -r '\.git$' "")
+            set target "$root/$slug"
+            if not test -d "$target"
+                mkdir -p (dirname $target)
+                eval $CLONE_COMMAND (string match -qr "^https?://|^git@" $argv[1] && echo $argv[1] || echo "$BASE_URL$argv[1]") $target
+                or return 1
+            end
+        else
+            set -l repos
+            for d in $root/*/*/
+                test -d "$d/.git" && set -a repos (string replace "$root/" "" $d | string trim -r -c '/')
+            end
+            test (count $repos) -eq 0 && echo "No repositories found." >&2 && return 1
+            set -l sel (printf '%s\n' $repos | fzf --height 10)
+            test -z "$sel" && return 1
+            set target "$root/$sel"
+        end
+        cd "$target"
       '';
     };
     interactiveShellInit = ''
