@@ -19,8 +19,6 @@
     # Recommended when using `direnv` etc.
     keep-derivations = true;
     keep-outputs = true;
-
-
   };
 
   # Don't need channels since I use flakes

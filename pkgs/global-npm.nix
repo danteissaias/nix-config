@@ -1,4 +1,8 @@
-{ lib, buildNpmPackage, nodejs }:
+{
+  lib,
+  buildNpmPackage,
+  nodejs,
+}:
 
 buildNpmPackage {
   pname = "global-npm-packages";

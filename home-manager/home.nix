@@ -20,31 +20,28 @@ in
 
   home.stateVersion = "25.05";
 
-  home.packages = (
-    with pkgs;
-    [
-      ffmpeg
-      ripgrep
-      fd
-      tokei
-      curl
-      jq
-      bun
-      pnpm
-      rustup
-      terraform
-      awscli2
-      flyctl
-      github-cli
-      global-npm
-      mergiraf
-      graphite-cli
-      go
-      python311
-      jj-starship
-      jj-ryu
-    ]
-  );
+  home.packages = with pkgs; [
+    ffmpeg
+    ripgrep
+    fd
+    tokei
+    curl
+    jq
+    bun
+    pnpm
+    rustup
+    terraform
+    awscli2
+    flyctl
+    github-cli
+    global-npm
+    mergiraf
+    graphite-cli
+    go
+    python311
+    jj-starship
+    jj-ryu
+  ];
 
   programs.nh = {
     enable = true;
