@@ -18,7 +18,7 @@ in
     inputs.catppuccin.homeModules.catppuccin
   ];
 
-  home.stateVersion = "25.05";
+  home.stateVersion = "25.11";
 
   home.packages = with pkgs; [
     ffmpeg
