@@ -7,14 +7,14 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "jj-ryu";
-  version = "0.0.1-alpha.3";
+  version = "0.0.1-alpha.8";
 
   src = fetchCrate {
     inherit pname version;
-    hash = "sha256-77ouQNgfnKG8ZNBqRFoGg4kEVejBvqstzGJlvEdGkOg=";
+    hash = "sha256-GJl6Yn1nGAFLQE46Q0oMdx/Kl5ghOXqJ0FC3hrR7Veg=";
   };
 
-  cargoHash = "sha256-N4rvaoOkf49ovImY/FRTivyLXhzFZU7b5K5m9RiTutY=";
+  cargoHash = "sha256-uKAQ3yuPIO4nXKUCuMSjqQCQ0WEWKlBWJtuaA60jGvA=";
 
   nativeCheckInputs = [ jujutsu ];
 
