@@ -1,14 +1,14 @@
 {
-  pkgs,
+  # pkgs,
   username,
   ...
 }:
 
 {
   # Allow authentication with Apple Watch with closed lid
-  environment.systemPackages = [ pkgs.pam-watchid ];
+  # environment.systemPackages = [ pkgs.pam-watchid ];
+  # security.pam.services.sudo_local.watchIdAuth = true;
   security.pam.services.sudo_local.touchIdAuth = true;
-  security.pam.services.sudo_local.watchIdAuth = true;
 
   networking.knownNetworkServices = [ "Wi-Fi" ];
 
