@@ -1,9 +1,9 @@
 {
   "dependencies": {
-    "@anthropic-ai/claude-code": "^2.1.38",
-    "@openai/codex": "^0.98.0",
-    "@sourcegraph/amp": "^0.0.1770734955-g93e689",
-    "@typescript/native-preview": "^7.0.0-dev.20260210.1",
-    "opencode-ai": "^1.1.53"
+    "@anthropic-ai/claude-code": "^2.1.71",
+    "@openai/codex": "^0.111.0",
+    "@sourcegraph/amp": "^0.0.1772956922-gc6107a",
+    "@typescript/native-preview": "^7.0.0-dev.20260308.1",
+    "opencode-ai": "^1.2.21"
   }
 }
