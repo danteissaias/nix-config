@@ -42,6 +42,7 @@ in
     jj-starship
     jj-ryu
     carapace
+    _1password-cli
   ];
 
   programs.nh = {
