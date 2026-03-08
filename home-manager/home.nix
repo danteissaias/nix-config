@@ -336,13 +336,10 @@ in
       ui.default-command = "log";
 
       # Move the closest bookmark to the current commit.
+      revsets.bookmark-advance-to = "@-";
       aliases.tug = [
         "bookmark"
-        "move"
-        "--from"
-        "heads(::@- & bookmarks())"
-        "--to"
-        "@-"
+        "advance"
       ];
 
       templates.git_push_bookmark = "\"dante/\" ++ committer.timestamp().format(\"%m-%d\") ++ \"_\" ++ description_slug(description)";
