@@ -134,6 +134,12 @@ in
   # Don't show the "Last login" message for every new terminal.
   home.file.".hushlogin".text = "";
 
+  home.file.".pi/agent/AGENTS.md".text = ''
+    - Prefer `jj` over `git`
+    - Prefer modern CLI tools (`fd`, `rg`, `jq`, etc.)
+    - No code comments
+  '';
+
   programs.ghostty = {
     enable = true;
     package = null;
