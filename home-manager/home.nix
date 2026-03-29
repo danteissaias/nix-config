@@ -18,7 +18,7 @@ in
     inputs.catppuccin.homeModules.catppuccin
   ];
 
-  home.stateVersion = "25.11";
+  home.stateVersion = "26.05";
 
   home.packages = with pkgs; [
     ffmpeg
@@ -97,6 +97,8 @@ in
   # config with nix yet.
   catppuccin.nvim.enable = false;
   xdg.configFile."nvim/init.lua".enable = lib.mkForce false;
+
+  programs.man.generateCaches = false;
 
   # Make various apps use XDG directories.
   home.sessionVariables = {
