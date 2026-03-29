@@ -290,7 +290,7 @@ in
       hashKnownHosts = false;
       userKnownHostsFile = "~/.ssh/known_hosts";
       controlMaster = "no";
-      controlPath = "~/.ssh/master-%r@%n:%p";
+      controlPath = "~/.ssh/master-%C";
       controlPersist = "no";
     };
     # Use 1Password agent
