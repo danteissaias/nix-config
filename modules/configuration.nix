@@ -58,7 +58,6 @@
     overlays = [
       (final: prev: {
         berkeley-mono = final.callPackage ../pkgs/berkeley-mono.nix { };
-        global-npm = final.callPackage ../pkgs/global-npm.nix { };
         jj-starship = final.callPackage ../pkgs/jj-starship.nix { };
         jj-ryu = final.callPackage ../pkgs/jj-ryu.nix { };
       })

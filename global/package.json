@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "@earendil-works/pi-coding-agent": "^0.76.0",
-    "@typescript/native-preview": "^7.0.0-dev.20260527.2",
-    "opencode-ai": "^1.15.12"
-  }
-}

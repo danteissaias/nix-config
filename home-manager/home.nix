@@ -32,7 +32,6 @@ in
     terraform
     awscli2
     github-cli
-    global-npm
     mergiraf
     go
     python311
