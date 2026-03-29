@@ -39,6 +39,7 @@ in
     jj-starship
     carapace
     _1password-cli
+    ghq
   ];
 
   programs.nh = {
@@ -166,44 +167,7 @@ in
 
   programs.fish = {
     enable = true;
-    functions = {
-      fish_greeting = "";
-      repo = /* fish */ ''
-        set -l BASE_URL "https://github.com/"
-        set -l CLONE_COMMAND "jj git clone"
-        set -l root "$HOME/Repos"
-        function __repo_slug
-            set -l r $argv[1]
-            if string match -q "*://*" $r
-                string split '/' $r | tail -n +4 | string join '/'
-            else if string match -q "*:*" $r
-                string split ':' $r | tail -n 1
-            else
-                echo $r
-            end
-        end
-        set -l target
-        if test (count $argv) -gt 0
-            set -l slug (__repo_slug $argv[1] | string replace -r '\.git$' "")
-            set target "$root/$slug"
-            if not test -d "$target"
-                mkdir -p (dirname $target)
-                eval $CLONE_COMMAND (string match -qr "^https?://|^git@" $argv[1] && echo $argv[1] || echo "$BASE_URL$argv[1]") $target
-                or return 1
-            end
-        else
-            set -l repos
-            for d in $root/*/*/
-                test -d "$d/.git" && set -a repos (string replace "$root/" "" $d | string trim -r -c '/')
-            end
-            test (count $repos) -eq 0 && echo "No repositories found." >&2 && return 1
-            set -l sel (printf '%s\n' $repos | fzf --height 10)
-            test -z "$sel" && return 1
-            set target "$root/$sel"
-        end
-        cd "$target"
-      '';
-    };
+    functions.fish_greeting = "";
     interactiveShellInit = ''
       fish_vi_key_bindings
       carapace _carapace | source
@@ -317,6 +281,7 @@ in
       init.defaultBranch = "main";
       pull.rebase = true;
       push.autoSetupRemote = true;
+      ghq.root = "~/src";
     };
   };
 
