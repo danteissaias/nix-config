@@ -1,8 +1,8 @@
 {
   lib,
   buildNpmPackage,
+  importNpmLock,
   nodejs,
-  pkgs,
 }:
 
 buildNpmPackage {
@@ -11,10 +11,10 @@ buildNpmPackage {
 
   src = ../global;
 
-  npmDeps = pkgs.importNpmLock {
+  npmDeps = importNpmLock {
     npmRoot = ../global;
   };
-  npmConfigHook = pkgs.importNpmLock.npmConfigHook;
+  npmConfigHook = importNpmLock.npmConfigHook;
 
   dontNpmBuild = true;
   dontAutoPatchelf = true;
