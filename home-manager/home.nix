@@ -21,6 +21,7 @@ in
   home.stateVersion = "26.05";
 
   home.file.".pi/agent/extensions/anthropic-web-search.ts".source = ./pi/anthropic-web-search.ts;
+  home.file.".pi/agent/APPEND_SYSTEM.md".source = ./pi/APPEND_SYSTEM.md;
 
   home.packages = with pkgs; [
     ffmpeg
