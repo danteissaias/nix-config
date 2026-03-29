@@ -32,11 +32,9 @@ in
     rustup
     terraform
     awscli2
-    flyctl
     github-cli
     global-npm
     mergiraf
-    graphite-cli
     go
     python311
     jj-starship
@@ -165,11 +163,6 @@ in
     enable = true;
     functions = {
       fish_greeting = "";
-      cdx = /* fish */ ''
-        # from: <https://x.com/iannuttall/status/1965090297630826931>
-        # Note: with auto confirmation. Use at your own risk. Thanks!
-        codex -m gpt-5-codex --yolo -c model_reasoning_effort=high -c model_reasoning_summary_format=experimental --enable web_search_request $argv
-      '';
       repo = /* fish */ ''
         set -l BASE_URL "https://github.com/"
         set -l CLONE_COMMAND "jj git clone"
