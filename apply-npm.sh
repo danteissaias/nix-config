@@ -1,3 +1,3 @@
 #!/bin/sh
 
-npm install -g @earendil-works/pi-coding-agent @anthropic-ai/claude-code
+npm install -g @earendil-works/pi-coding-agent @opencode-ai/cli@beta
