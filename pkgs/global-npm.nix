@@ -2,6 +2,7 @@
   lib,
   buildNpmPackage,
   nodejs,
+  pkgs,
 }:
 
 buildNpmPackage {
@@ -10,7 +11,10 @@ buildNpmPackage {
 
   src = ../global;
 
-  npmDepsHash = lib.strings.fileContents ../global/deps.hash;
+  npmDeps = pkgs.importNpmLock {
+    npmRoot = ../global;
+  };
+  npmConfigHook = pkgs.importNpmLock.npmConfigHook;
 
   dontNpmBuild = true;
   dontAutoPatchelf = true;

@@ -124,6 +124,7 @@ in
     cache=${cacheHome}/npm
     init-module=${configHome}/npm/config/npm-init.js
     logs-dir=${stateHome}/npm/logs
+    registry=https://registry.yarnpkg.com/
   '';
 
   home.sessionPath = [
