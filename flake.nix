@@ -12,9 +12,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    catppuccin.url = "github:catppuccin/nix";
+    catppuccin = {
+      url = "github:catppuccin/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    neovim-nightly-overlay = {
+      url = "github:nix-community/neovim-nightly-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
 
