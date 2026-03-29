@@ -80,7 +80,7 @@ in
         doCheck = false;
       })
       gopls
-      nixfmt-rfc-style
+      nixfmt
       vtsls
       vscode-langservers-extracted
       lua-language-server
