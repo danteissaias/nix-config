@@ -116,8 +116,6 @@ in
 
     DOCKER_CONFIG = "${configHome}/docker";
     FLY_CONFIG_DIR = "${stateHome}/fly";
-
-    N_PREFIX = "${dataHome}/n";
   };
 
   xdg.configFile."npm/npmrc".text = ''
@@ -129,9 +127,8 @@ in
   '';
 
   home.sessionPath = [
-    # Node.js managed by n
-    "${dataHome}/n/bin"
     "${dataHome}/cargo/bin"
+    "${dataHome}/npm/bin"
   ];
 
   # Don't show the "Last login" message for every new terminal.
