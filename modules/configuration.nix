@@ -38,6 +38,14 @@
   # Don't need channels since I use flakes
   nix.channel.enable = false;
 
+  # Work around a nix-darwin/nixpkgs mismatch where nix-darwin's HTML manual
+  # still passes the removed `--toc-depth` flag to nixos-render-docs.
+  # Keep man/info docs enabled; only skip the generated HTML manual/darwin-help app.
+  documentation.doc.enable = false;
+  # The uninstaller package evaluates a separate default nix-darwin system whose
+  # docs still hit the same renderer incompatibility.
+  system.tools.darwin-uninstaller.enable = false;
+
   environment.shells = [ pkgs.fish ];
   programs.fish.enable = true;
 
