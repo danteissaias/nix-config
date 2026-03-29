@@ -28,8 +28,8 @@ in
     fd
     tokei
     curl
+    pnpm_10
     jq
-    pnpm
     rustup
     terraform
     awscli2
