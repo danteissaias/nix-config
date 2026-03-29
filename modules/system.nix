@@ -1,8 +1,12 @@
 {
-  # pkgs,
+  pkgs,
   username,
   ...
 }:
+
+let
+  reload-scroll-direction = pkgs.callPackage ../pkgs/reload-scroll-direction.nix { };
+in
 
 {
   # Allow authentication with Apple Watch with closed lid
@@ -35,5 +39,8 @@
   system.activationScripts.postActivation.text = ''
     # Following line should allow us to avoid a logout/login cycle
     /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+    # com.apple.swipescrolldirection doesn't seem to apply without a logout/login cycle, so we
+    # have a small script which uses a private API to re-apply the setting.
+    ${reload-scroll-direction}/bin/reload-scroll-direction
   '';
 }
