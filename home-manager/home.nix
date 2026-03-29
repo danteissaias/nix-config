@@ -142,6 +142,7 @@ in
       auto-update = "off";
       mouse-hide-while-typing = true;
       font-family = "Berkeley Mono";
+      font-size = 14;
 
       keybind = [
         # Shift+Enter newline in Claude Code
