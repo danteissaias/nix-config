@@ -1,10 +1,10 @@
 {
   "dependencies": {
-    "@anthropic-ai/claude-code": "^2.1.87",
+    "@anthropic-ai/claude-code": "^2.1.89",
     "@mariozechner/pi-coding-agent": "^0.64.0",
     "@openai/codex": "^0.118.0",
-    "@sourcegraph/amp": "^0.0.1774973894-g4efe21",
-    "@typescript/native-preview": "^7.0.0-dev.20260331.1",
-    "opencode-ai": "^1.3.10"
+    "@sourcegraph/amp": "^0.0.1775074185-gd026fe",
+    "@typescript/native-preview": "^7.0.0-dev.20260401.1",
+    "opencode-ai": "^1.3.13"
   }
 }
