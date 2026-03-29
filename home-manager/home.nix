@@ -125,7 +125,9 @@ in
       auto-update = "off";
       mouse-hide-while-typing = true;
       font-family = "Berkeley Mono";
-      font-size = 14;
+      # font-family = "Cascadia Code";
+      font-size = 16;
+      adjust-cell-height = "10%";
 
       keybind = [
         # Shift+Enter newline in Claude Code
