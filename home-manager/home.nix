@@ -27,7 +27,6 @@ in
     tokei
     curl
     jq
-    bun
     pnpm
     rustup
     terraform
@@ -38,7 +37,6 @@ in
     go
     python311
     jj-starship
-    jj-ryu
     carapace
     _1password-cli
   ];

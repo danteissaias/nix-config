@@ -34,7 +34,6 @@
       "1password"
       "spotify"
       "thebrowsercompany-dia"
-      "raycast"
       "slack"
       "postico"
       "ghostty@tip"
