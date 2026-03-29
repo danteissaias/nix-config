@@ -7,4 +7,3 @@
 - If the repo root has `.jj/`, use only `jj`. Otherwise, use `git`.
 - Use read-only commands by default: `status`, `log`, `diff`, and `show`.
 - Never stage, commit, amend, push, rebase, reset, or otherwise change repo state unless the user explicitly asks.
-- If a change is needed but not requested, ask first.
