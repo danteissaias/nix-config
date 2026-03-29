@@ -21,6 +21,16 @@
     keep-outputs = true;
   };
 
+  nix.gc = {
+    automatic = true;
+    interval = {
+      Weekday = 0;
+      Hour = 2;
+      Minute = 0;
+    };
+    options = "--delete-older-than 30d";
+  };
+
   # Don't need channels since I use flakes
   nix.channel.enable = false;
 
