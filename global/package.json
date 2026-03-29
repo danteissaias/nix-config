@@ -1,10 +1,10 @@
 {
   "dependencies": {
-    "@anthropic-ai/claude-code": "^2.1.100",
-    "@mariozechner/pi-coding-agent": "^0.66.1",
-    "@openai/codex": "^0.118.0",
-    "@sourcegraph/amp": "^0.0.1775828015-g4f08a0",
-    "@typescript/native-preview": "^7.0.0-dev.20260410.1",
-    "opencode-ai": "^1.4.3"
+    "@anthropic-ai/claude-code": "^2.1.112",
+    "@mariozechner/pi-coding-agent": "^0.67.6",
+    "@openai/codex": "^0.121.0",
+    "@sourcegraph/amp": "^0.0.1776414563-g05657a",
+    "@typescript/native-preview": "^7.0.0-dev.20260417.1",
+    "opencode-ai": "^1.4.7"
   }
 }
