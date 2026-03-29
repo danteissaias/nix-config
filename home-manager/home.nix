@@ -20,6 +20,8 @@ in
 
   home.stateVersion = "26.05";
 
+  home.file.".pi/agent/extensions/anthropic-web-search.ts".source = ./pi/anthropic-web-search.ts;
+
   home.packages = with pkgs; [
     ffmpeg
     ripgrep
