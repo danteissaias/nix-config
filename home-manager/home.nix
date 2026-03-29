@@ -218,6 +218,7 @@ in
 
   catppuccin.flavor = "mocha";
   catppuccin.enable = true;
+  catppuccin.autoEnable = true;
 
   programs.bat.enable = true;
   programs.fzf.enable = true;
