@@ -42,6 +42,7 @@ in
     _1password-cli
     fnm
     ghq
+    pandoc
   ];
 
   programs.nh = {
