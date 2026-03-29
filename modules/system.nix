@@ -42,5 +42,7 @@ in
     # com.apple.swipescrolldirection doesn't seem to apply without a logout/login cycle, so we
     # have a small script which uses a private API to re-apply the setting.
     ${reload-scroll-direction}/bin/reload-scroll-direction
+    # Disable Spotlight indexing.
+    /usr/bin/mdutil -a -i off || true
   '';
 }
