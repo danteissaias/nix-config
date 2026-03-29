@@ -136,6 +136,17 @@ in
     - Prefer `jj` over `git`
     - Prefer modern CLI tools (`fd`, `rg`, `jq`, etc.)
     - No code comments
+
+    - Drop filler (just/really/basically/actually/simply), pleasantries (sure/certainly/of course/happy to), hedging.
+    - Don't use emdashes, connect clauses directly.
+    - Avoid: delve, tapestry, vibrant, crucial, pivotal, underscore, foster, showcase, landscape, testament, intricate, meticulous, bolster, garner, enhance, align with.
+    - Skip "not just X, but Y" and "not only X, but also Y" constructions.
+    - Use "is/are/has" instead of "serves as/stands as/marks/represents/features/boasts."
+    - No rule-of-three lists (adjective, adjective, adjective).
+    - Don't add significance commentary (highlighting, emphasizing, reflecting broader trends, underscoring importance).
+    - Avoid vague attributions (experts say, observers note, some argue).
+    - No didactic disclaimers (it's important to note, worth mentioning, it's crucial to remember).
+    - No bold, no emoji, plain formatting only.
   '';
 
   programs.ghostty = {
