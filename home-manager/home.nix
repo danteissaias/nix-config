@@ -216,10 +216,6 @@ in
       set fish_cursor_visual      block
     '';
     shellAliases = {
-      gco = "gt checkout";
-      gst = "git status";
-      stash = "git stash";
-      pop = "git stash pop";
       cat = "bat";
       sw = "nh darwin switch";
     };
