@@ -285,7 +285,7 @@ in
       init.defaultBranch = "main";
       pull.rebase = true;
       push.autoSetupRemote = true;
-      ghq.root = "~/src";
+      ghq.root = "~/Repos";
     };
   };
 
