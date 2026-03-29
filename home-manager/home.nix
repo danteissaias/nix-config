@@ -63,31 +63,13 @@ in
     viAlias = true;
     defaultEditor = true;
     extraPackages = with pkgs; [
-      # TODO: Remove when we get 0.26.1 from nixpkgs
-      (pkgs.rustPlatform.buildRustPackage rec {
-        pname = "tree-sitter";
-        version = "0.26.1";
-        src = pkgs.fetchFromGitHub {
-          owner = "tree-sitter";
-          repo = "tree-sitter";
-          rev = "v${version}";
-          hash = "sha256-k8X2qtxUne8C6znYAKeb4zoBf+vffmcJZQHUmBvsilA=";
-        };
-        cargoHash = "sha256-hnFHYQ8xPNFqic1UYygiLBWu3n82IkTJuQvgcXcMdv0=";
-        cargoBuildFlags = [
-          "-p"
-          "tree-sitter-cli"
-        ];
-        doCheck = false;
-      })
+      tree-sitter
       gopls
       nixfmt
-      vtsls
       vscode-langservers-extracted
       lua-language-server
       nixd
       stylua
-      prettierd
       tailwindcss-language-server
       fswatch # https://github.com/neovim/neovim/pull/27347
       terraform-ls
