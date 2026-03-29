@@ -147,6 +147,7 @@ in
     enable = true;
     package = null;
     settings = {
+      auto-update = "off";
       mouse-hide-while-typing = true;
       font-family = "Berkeley Mono";
 
