@@ -39,6 +39,7 @@ in
     jj-starship
     carapace
     _1password-cli
+    fnm
     ghq
   ];
 
@@ -170,12 +171,15 @@ in
     functions.fish_greeting = "";
     interactiveShellInit = ''
       fish_vi_key_bindings
-      carapace _carapace | source
 
       set fish_cursor_default     block      blink
       set fish_cursor_insert      line       blink
       set fish_cursor_replace_one underscore blink
       set fish_cursor_visual      block
+
+      # TODO can nix do these?
+      carapace _carapace | source
+      fnm env --use-on-cd --shell fish | source
     '';
     shellAliases = {
       cat = "bat";
