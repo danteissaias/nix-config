@@ -68,6 +68,7 @@
       darwinConfigurations = {
         speedy = mkDarwinSystem "speedy";
         m4 = mkDarwinSystem "m4";
+        m5 = mkDarwinSystem "m5";
       };
     };
 }
