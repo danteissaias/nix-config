@@ -38,6 +38,8 @@
       "orbstack"
       "superhuman"
       "raycast"
+      "notion-calendar"
+      "tailscale"
     ];
     taps = builtins.attrNames config.nix-homebrew.taps;
   };
