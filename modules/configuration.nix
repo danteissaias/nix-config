@@ -68,6 +68,7 @@
         berkeley-mono = final.callPackage ../pkgs/berkeley-mono.nix { };
         jj-starship = final.callPackage ../pkgs/jj-starship.nix { };
         jj-ryu = final.callPackage ../pkgs/jj-ryu.nix { };
+        terraform = final.callPackage ../pkgs/terraform.nix { };
       })
     ];
   };
