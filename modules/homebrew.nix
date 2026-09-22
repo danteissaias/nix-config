@@ -37,6 +37,7 @@
       "cleanshot"
       "orbstack"
       "superhuman"
+      "raycast"
     ];
     taps = builtins.attrNames config.nix-homebrew.taps;
   };
