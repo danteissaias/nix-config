@@ -39,7 +39,6 @@ in
     go
     python311
     jj-starship
-    carapace
     _1password-cli
     fnm
     ghq
@@ -135,6 +134,11 @@ in
     };
   };
 
+  programs.carapace = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+
   programs.fish = {
     enable = true;
     functions.fish_greeting = "";
@@ -146,8 +150,7 @@ in
       set fish_cursor_replace_one underscore blink
       set fish_cursor_visual      block
 
-      # TODO can nix do these?
-      carapace _carapace | source
+      # TODO can nix do this?
       fnm env --use-on-cd --shell fish | source
     '';
     shellAliases = {
