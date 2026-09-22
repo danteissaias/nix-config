@@ -20,8 +20,8 @@ in
 
   home.stateVersion = "26.05";
 
-  home.file.".pi/agent/extensions/anthropic-web-search.ts".source = ./pi/anthropic-web-search.ts;
-  home.file.".pi/agent/APPEND_SYSTEM.md".source = ./pi/APPEND_SYSTEM.md;
+  xdg.dataFile."pi/agent/extensions/anthropic-web-search.ts".source = ./pi/anthropic-web-search.ts;
+  xdg.dataFile."pi/agent/APPEND_SYSTEM.md".source = ./pi/APPEND_SYSTEM.md;
 
   home.packages = with pkgs; [
     ffmpeg
@@ -40,7 +40,6 @@ in
     python311
     jj-starship
     _1password-cli
-    fnm
     ghq
     pandoc
   ];
@@ -92,6 +91,11 @@ in
 
     CARGO_HOME = "${dataHome}/cargo";
     RUSTUP_HOME = "${dataHome}/rustup";
+
+    PI_CODING_AGENT_DIR = "${dataHome}/pi/agent";
+
+    HOMEBREW_CACHE = "${cacheHome}/homebrew";
+    HOMEBREW_LOGS = "${stateHome}/homebrew/logs";
 
     LESSHISTFILE = "${stateHome}/lesshst";
 
@@ -178,8 +182,6 @@ in
       set fish_cursor_replace_one underscore blink
       set fish_cursor_visual      block
 
-      # TODO can nix do this?
-      fnm env --use-on-cd --shell fish | source
     '';
     shellAliases = {
       cat = "bat";
