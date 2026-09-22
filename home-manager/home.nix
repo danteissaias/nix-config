@@ -91,6 +91,7 @@ in
     BUNDLE_USER_PLUGIN = "${dataHome}/bundle/plugin";
 
     CARGO_HOME = "${dataHome}/cargo";
+    RUSTUP_HOME = "${dataHome}/rustup";
 
     LESSHISTFILE = "${stateHome}/lesshst";
 
@@ -138,6 +139,33 @@ in
     enable = true;
     enableFishIntegration = true;
   };
+
+  programs.mise = {
+    enable = true;
+    enableFishIntegration = true;
+    globalConfig = {
+      tools = {
+        node = "26.10.0";
+        rust = "nightly";
+      };
+      settings.idiomatic_version_file_enable_tools = [
+        "node"
+        "rust"
+      ];
+    };
+  };
+
+  # Run mise install
+  home.activation.miseInstall = lib.hm.dag.entryAfter [ "linkGeneration" "installPackages" ] /* sh */ ''
+    (
+      unset __HM_SESS_VARS_SOURCED
+      set +u
+      . "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh"
+      set -u
+      export PATH="${config.home.profileDirectory}/bin:$PATH"
+      run ${lib.getExe config.programs.mise.package} --cd "${configHome}/mise" install
+    )
+  '';
 
   programs.fish = {
     enable = true;
