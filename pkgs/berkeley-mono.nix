@@ -12,7 +12,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
 
   src = requireFile rec {
     name = "${finalAttrs.pname}-${variant}-${finalAttrs.version}.zip";
-    sha256 = "09pf7sv72xkshxjhryva8d9z417awcxzv664v102qn44ri32lm96";
+    sha256 = "0yx7ycmbyna2kvl5x2jy4n1hq73j7ybx8xpknahzh0xl6frfv54p";
     message = ''
       This file needs to be manually downloaded from the Berkeley Graphics
       site (https://berkeleygraphics.com/accounts). An email will be sent to
