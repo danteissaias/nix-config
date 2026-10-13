@@ -1,0 +1,4 @@
+-- Rex config. Managed by home-manager (source = ./rex/init.lua).
+-- Reload is manual and must run on the server machine:
+--   rex config check   (validate)
+--   rex config reload  (apply; refused over a remote connection)

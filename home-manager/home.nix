@@ -16,12 +16,34 @@ in
 {
   imports = [
     inputs.catppuccin.homeModules.catppuccin
+    inputs.nix-index-database.homeModules.nix-index
   ];
+
+  # `, <cmd>` runs any nixpkgs program without installing it. The fish
+  # command-not-found handler from nix-index is not wanted, so nix-index is off.
+  programs.nix-index.enable = false; # the module sets this to true by default
+  programs.nix-index-database.comma.enable = true;
 
   home.stateVersion = "26.05";
 
-  xdg.dataFile."pi/agent/extensions/anthropic-web-search.ts".source = ./pi/anthropic-web-search.ts;
+  xdg.dataFile."pi/agent/extensions/parallel-web-search.ts".source = ./pi/parallel-web-search.ts;
+  xdg.dataFile."pi/agent/extensions/background-compaction.ts".source = ./pi/background-compaction.ts;
   xdg.dataFile."pi/agent/APPEND_SYSTEM.md".source = ./pi/APPEND_SYSTEM.md;
+  xdg.configFile."opencode/AGENTS.md".source = ./pi/APPEND_SYSTEM.md;
+
+  # pi writes to settings.json itself (deviceId etc.), so it cannot be a
+  # read-only link. Merge ./pi/settings.json into it instead; keys from this
+  # repo win over keys already in the file.
+  home.activation.piSettings = lib.hm.dag.entryAfter [ "writeBoundary" ] /* sh */ ''
+    settings="${dataHome}/pi/agent/settings.json"
+    if [[ -z "''${DRY_RUN:-}" ]]; then
+      mkdir -p "$(dirname "$settings")"
+      [[ -s "$settings" ]] || echo '{}' > "$settings"
+      tmp=$(mktemp)
+      ${lib.getExe pkgs.jq} -s '.[0] * .[1]' "$settings" ${./pi/settings.json} > "$tmp" \
+        && mv "$tmp" "$settings"
+    fi
+  '';
 
   home.packages = with pkgs; [
     ffmpeg
@@ -29,9 +51,8 @@ in
     fd
     tokei
     curl
-    pnpm_10
+    pnpm
     jq
-    rustup
     terraform
     awscli2
     github-cli
@@ -42,6 +63,18 @@ in
     _1password-cli
     ghq
     pandoc
+    inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.pi
+    inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.opencode2
+    # The opencode2 package only ships `opencode2`; keep the `opencode` name.
+    (pkgs.runCommand "opencode" { } ''
+      mkdir -p $out/bin
+      ln -s ${lib.getExe' inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.opencode2 "opencode2"} $out/bin/opencode
+    '')
+    ast-grep
+    xh
+    sd
+    dust
+    hyperfine
   ];
 
   programs.nh = {
@@ -71,6 +104,8 @@ in
       tailwindcss-language-server
       fswatch # https://github.com/neovim/neovim/pull/27347
       terraform-ls
+      yaml-language-server
+      stylelint-lsp
     ];
   };
 
@@ -93,6 +128,8 @@ in
     RUSTUP_HOME = "${dataHome}/rustup";
 
     PI_CODING_AGENT_DIR = "${dataHome}/pi/agent";
+    # pi is updated through the llm-agents.nix flake input, not by itself.
+    PI_SKIP_VERSION_CHECK = "1";
 
     HOMEBREW_CACHE = "${cacheHome}/homebrew";
     HOMEBREW_LOGS = "${stateHome}/homebrew/logs";
@@ -101,6 +138,9 @@ in
 
     NODE_REPL_HISTORY = "${stateHome}/node_repl_history";
     NPM_CONFIG_USERCONFIG = "${configHome}/npm/npmrc";
+    # pnpm ignores the project .npmrc when it fetches the pinned pnpm version.
+    PNPM_CONFIG_REGISTRY = "https://registry.yarnpkg.com/";
+    PNPM_CONFIG_GLOBAL_PNPMFILE = "${configHome}/pnpm/global_pnpmfile.cjs";
 
     DOCKER_CONFIG = "${configHome}/docker";
     FLY_CONFIG_DIR = "${stateHome}/fly";
@@ -114,6 +154,21 @@ in
     registry=https://registry.yarnpkg.com/
   '';
 
+  # registry.yarnpkg.com metadata points tarballs at registry.npmjs.org, which
+  # some networks block. npm rewrites the host itself; pnpm needs this fetcher.
+  xdg.configFile."pnpm/global_pnpmfile.cjs".text = ''
+    const NPMJS = "https://registry.npmjs.org/";
+    const YARN = "https://registry.yarnpkg.com/";
+    module.exports = {
+      fetchers: [
+        {
+          canFetch: (_id, r) => typeof r?.tarball === "string" && r.tarball.startsWith(NPMJS),
+          fetch: (_cafs, r) => ({ delegate: { ...r, tarball: YARN + r.tarball.slice(NPMJS.length) } }),
+        },
+      ],
+    };
+  '';
+
   home.sessionPath = [
     "${dataHome}/cargo/bin"
     "${dataHome}/npm/bin"
@@ -122,22 +177,23 @@ in
   # Don't show the "Last login" message for every new terminal.
   home.file.".hushlogin".text = "";
 
-  programs.ghostty = {
-    enable = true;
-    package = null;
-    settings = {
-      auto-update = "off";
-      mouse-hide-while-typing = true;
-      font-family = "Berkeley Mono";
+  # Rex config: one Lua file managed from this repo (key bindings / actions).
+  xdg.configFile."rex/init.lua".source = ./rex/init.lua;
 
-      # Disable ligatures
-      font-feature = [
-        "-calt"
-        "-liga"
-        "-dlig"
-      ];
-    };
-  };
+  # Rex font and theme are NOT in init.lua. They live in the
+  # com.superlogical.rex defaults domain. Font and theme IDs are plain
+  # strings; the custom theme itself is a JSON array stored as a Data value,
+  # so it must be written with `defaults write -data`. This runs as the user.
+  # Quit Rex before switching, or Rex may overwrite these on quit.
+  home.activation.rexAppearance = lib.hm.dag.entryAfter [ "writeBoundary" ] /* sh */ ''
+    DOMAIN=com.superlogical.rex
+    THEME_ID="custom-B9DB6786-2D8E-49B8-BF09-CB7B6038DC0F"
+    HEX=$(/usr/bin/xxd -p ${./rex/catppuccin-themes.json} | tr -d '\n')
+    run /usr/bin/defaults write "$DOMAIN" "Workspace.terminalFontName" -string "Berkeley Mono"
+    run /usr/bin/defaults write "$DOMAIN" "Workspace.customThemes" -data "$HEX"
+    run /usr/bin/defaults write "$DOMAIN" "Workspace.darkThemeID"  -string "$THEME_ID"
+    run /usr/bin/defaults write "$DOMAIN" "Workspace.lightThemeID" -string "$THEME_ID"
+  '';
 
   programs.carapace = {
     enable = true;
@@ -251,16 +307,6 @@ in
     enable = true;
     enableDefaultConfig = false;
     settings."*" = {
-      ForwardAgent = false;
-      ServerAliveInterval = 0;
-      ServerAliveCountMax = 3;
-      Compression = false;
-      AddKeysToAgent = "no";
-      HashKnownHosts = false;
-      UserKnownHostsFile = "~/.ssh/known_hosts";
-      ControlMaster = "no";
-      ControlPath = "~/.ssh/master-%C";
-      ControlPersist = "no";
       # Use 1Password agent
       IdentityAgent = ''"~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"'';
     };
@@ -324,6 +370,15 @@ in
       aliases.tug = [
         "bookmark"
         "advance"
+      ];
+
+      aliases.sync = [
+        "util"
+        "exec"
+        "--"
+        "sh"
+        "-c"
+        "jj git fetch && jj rebase -d 'trunk()'"
       ];
 
       templates.git_push_bookmark = "\"dante/\" ++ committer.timestamp().format(\"%m-%d\") ++ \"_\" ++ description_slug(description)";

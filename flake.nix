@@ -17,10 +17,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    neovim-nightly-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay";
+    # Do not follow our nixpkgs, so builds hit nix-community.cachix.org.
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # No `follows`: use their nixpkgs so builds hit cache.numtide.com.
+    llm-agents.url = "github:numtide/llm-agents.nix";
 
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
 

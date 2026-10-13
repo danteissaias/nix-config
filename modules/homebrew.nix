@@ -24,7 +24,8 @@
   homebrew = {
     enable = true;
     onActivation = {
-      autoUpdate = true;
+      # Taps are pinned by flake inputs; update them with `nix flake update`.
+      autoUpdate = false;
       cleanup = "zap";
     };
     casks = [
@@ -33,13 +34,12 @@
       "thebrowsercompany-dia"
       "slack"
       "postico"
-      "ghostty@tip"
       "cleanshot"
       "orbstack"
       "superhuman"
       "raycast"
       "notion-calendar"
-      "tailscale"
+      "tailscale-app"
     ];
     taps = builtins.attrNames config.nix-homebrew.taps;
   };

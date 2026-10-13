@@ -17,22 +17,18 @@
     use-xdg-base-directories = true;
     warn-dirty = false;
 
-    substituters = [ "https://nix-community.cachix.org" ];
-    trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
+    substituters = [
+      "https://nix-community.cachix.org"
+      "https://cache.numtide.com" # llm-agents.nix
+    ];
+    trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
+    ];
 
     # Recommended when using `direnv` etc.
     keep-derivations = true;
     keep-outputs = true;
-  };
-
-  nix.gc = {
-    automatic = true;
-    interval = {
-      Weekday = 0;
-      Hour = 2;
-      Minute = 0;
-    };
-    options = "--delete-older-than 30d";
   };
 
   # Don't need channels since I use flakes
@@ -79,7 +75,12 @@
     ];
   };
 
-  # Hack: https://github.com/ghostty-org/ghostty/discussions/2832
-  environment.variables.XDG_DATA_DIRS = [ "$GHOSTTY_SHELL_INTEGRATION_XDG_DIR" ];
-  environment.systemPath = [ "/Applications/Ghostty.app/Contents/MacOS/" ];
+  # Rex ships its CLI inside a nested helper app bundle whose path contains
+  # spaces, which breaks environment.systemPath. Wrap it in a space-free
+  # `rex` command on PATH instead.
+  environment.systemPackages = [
+    (pkgs.writeShellScriptBin "rex" ''
+      exec "/Applications/Rex Beta.app/Contents/Helpers/Rex Server.rex/Contents/MacOS/rex" "$@"
+    '')
+  ];
 }

@@ -1,0 +1,10 @@
+{
+  "theme": "dark",
+  "showHardwareCursor": true,
+  "defaultProvider": "anthropic",
+  "defaultModel": "claude-opus-5-5",
+  "warnings": {
+    "anthropicExtraUsage": false
+  },
+  "shellCommandPrefix": "export PATH=\"$HOME/.local/share/mise/shims:$PATH\""
+}
